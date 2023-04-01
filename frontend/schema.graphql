@@ -1,0 +1,38 @@
+"""Indicates a Bean Validation constraint"""
+directive @constraint(format: String, max: BigInteger, maxFloat: BigDecimal, maxLength: Int, min: BigInteger, minFloat: BigDecimal, minLength: Int, pattern: String) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+"""Scalar for BigDecimal"""
+scalar BigDecimal
+
+"""Scalar for BigInteger"""
+scalar BigInteger
+
+"""Scalar for DateTime"""
+scalar DateTime
+
+"""Query root"""
+type Query {
+  """Say hello"""
+  sayHello(name: String = "World"): String
+  spotifyTrack: SpotifyTrack
+}
+
+type SpotifyTrack {
+  artistName: String
+  coverUrl: String
+  durationMs: Int
+  id: BigInteger
+  isCurrent: Boolean
+  isPlaying: Boolean
+
+  """ISO-8601"""
+  playedAt: DateTime
+  progressMs: Int
+  songLink: String
+  trackName: String
+}
+
+"""Subscription root"""
+type Subscription {
+  subSpotifyTrack: SpotifyTrack
+}

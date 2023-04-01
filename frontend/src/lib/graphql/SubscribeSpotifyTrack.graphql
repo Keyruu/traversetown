@@ -1,0 +1,12 @@
+subscription SubscribeSpotifyTrack {
+  subSpotifyTrack {
+    artistName
+    trackName
+    progressMs
+    coverUrl
+    isCurrent
+    durationMs
+    isPlaying
+    songLink
+  }
+}

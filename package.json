@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "global": "^4.4.0",
+    "nuxi": "^3.3.2"
+  }
+}
