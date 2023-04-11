@@ -34,6 +34,8 @@ public class SpotifyClient
   @Inject
   Scheduler scheduler;
 
+  SpotifyTrack lastTrack;
+
   BroadcastProcessor<SpotifyTrack> processor = BroadcastProcessor.create();
 
   public void scheduleRefresh(Integer delay)

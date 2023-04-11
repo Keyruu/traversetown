@@ -1,12 +1,13 @@
 import { createClient } from 'graphql-ws'
 import { subscription } from '$houdini/plugins'
 import { HoudiniClient } from '$houdini';
+import { PUBLIC_GRAPHQL_URL, PUBLIC_GRAPHQL_WS_URL } from '$env/static/public';
 
 export default new HoudiniClient({
-    url: 'http://localhost:8080/graphql',
+    url: PUBLIC_GRAPHQL_URL,
     plugins: [
         subscription(() => createClient({
-            url: 'ws://localhost:8080/graphql'
+            url: PUBLIC_GRAPHQL_WS_URL
         }))
     ]
 

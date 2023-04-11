@@ -8,5 +8,6 @@ subscription SubscribeSpotifyTrack {
     durationMs
     isPlaying
     songLink
+    spotifyId
   }
 }

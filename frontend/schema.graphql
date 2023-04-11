@@ -29,6 +29,7 @@ type SpotifyTrack {
   playedAt: DateTime
   progressMs: Int
   songLink: String
+  spotifyId: String
   trackName: String
 }
 

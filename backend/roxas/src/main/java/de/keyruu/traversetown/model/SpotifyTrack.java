@@ -15,7 +15,7 @@ import se.michaelthelin.spotify.model_objects.specification.Track;
 @Entity
 public class SpotifyTrack extends PanacheEntity
 {
-
+  private String spotifyId;
   private String trackName;
   private String artistName;
   private String coverUrl;
@@ -57,10 +57,21 @@ public class SpotifyTrack extends PanacheEntity
 
   public void setTrackStuff(Track track)
   {
+    this.spotifyId = track.getId();
     this.artistName = getArtistsString(track.getArtists());
     this.trackName = track.getName();
     this.coverUrl = track.getAlbum().getImages()[0].getUrl();
     this.songLink = track.getExternalUrls().get("spotify");
+  }
+
+  public String getSpotifyId()
+  {
+    return spotifyId;
+  }
+
+  public void setSpotifyId(String spotifyId)
+  {
+    this.spotifyId = spotifyId;
   }
 
   public String getTrackName()
