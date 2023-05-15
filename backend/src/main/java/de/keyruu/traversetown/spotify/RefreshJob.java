@@ -2,7 +2,7 @@ package de.keyruu.traversetown.spotify;
 
 import java.io.IOException;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.apache.hc.core5.http.ParseException;
 import org.quartz.Job;

@@ -120,12 +120,13 @@
 		class="h-full px-4 overflow-hidden text-center relative mt-8 py-0.5 font-extrabold"
 	>
 		<h1
-			class={`title-font sm:text-4xl text-3xl font-medium ${
+			class={`title-font sm:text-4xl text-3xl font-medium flex ${
 				isTooDark ? 'text-slate-300' : 'text-gray-900'
 			}`}
 		>
-			<strong>{spotifyTrack.subSpotifyTrack?.trackName}</strong> —
-			{spotifyTrack.subSpotifyTrack?.artistName}
+			<p class="font-semibold">{spotifyTrack.subSpotifyTrack?.trackName}</p>
+			&nbsp;—&nbsp;
+			<p class="font-light">{spotifyTrack.subSpotifyTrack?.artistName}</p>
 		</h1>
 	</div>
 </div>

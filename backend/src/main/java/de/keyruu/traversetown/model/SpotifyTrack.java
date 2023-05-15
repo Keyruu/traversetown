@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import se.michaelthelin.spotify.model_objects.miscellaneous.CurrentlyPlaying;

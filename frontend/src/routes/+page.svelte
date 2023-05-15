@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { SubscribeSpotifyTrackStore } from '$houdini';
-	import { draw, fade, fly } from 'svelte/transition';
 	import CurrentTrack from '$lib/components/CurrentTrack.svelte';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 
+	import FullStack from '$lib/components/FullStack.svelte';
 	import 'atropos/css';
+	import { cubicOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
-	import { cubicInOut, cubicOut } from 'svelte/easing';
 
 	const spotifyTrack = new SubscribeSpotifyTrackStore();
 	spotifyTrack.listen();
@@ -24,13 +25,13 @@
 		{ name: 'DevOps', image: 'keyruu_logo.png' }
 	];
 	const likes2 = [
+		{ name: 'Spezi', image: 'keyruu_logo.png' },
 		{ name: 'Backend', image: 'keyruu_logo.png' },
-		{ name: 'Frontend', image: 'keyruu_logo.png' },
 		{ name: 'DevOps', image: 'keyruu_logo.png' },
 		{ name: 'Design', image: 'keyruu_logo.png' },
-		{ name: 'Music', image: 'keyruu_logo.png' },
 		{ name: 'Gaming', image: 'keyruu_logo.png' },
-		{ name: 'Spezi', image: 'keyruu_logo.png' },
+		{ name: 'Music', image: 'keyruu_logo.png' },
+		{ name: 'Frontend', image: 'keyruu_logo.png' },
 		{ name: 'Design', image: 'keyruu_logo.png' }
 	];
 
@@ -39,7 +40,14 @@
 		easing: cubicOut
 	});
 
+	let spotifyWeight = tweened(400, {
+		duration: 200,
+		easing: cubicOut
+	});
+
 	onMount(() => {
+		gsap.registerPlugin(ScrollTrigger);
+
 		ScrollTrigger.create({
 			animation: gsap.to('.personal-text', {
 				xPercent: -50
@@ -50,9 +58,9 @@
 			endTrigger: '.likes',
 			end: 'bottom top',
 			onUpdate: (self) => {
-				let proxy = self.getVelocity() / -300;
+				let proxy = self.getVelocity() / -250;
 				console.log(proxy);
-				if (Math.abs(proxy) < 30) {
+				if (Math.abs(proxy) < 20) {
 					skew.set(proxy, { duration: 0 });
 					skew.set(0);
 				}
@@ -95,8 +103,9 @@
 				<div class="personal-text w-full flex">
 					{#each likes as like, i}
 						<p
-							in:fly={{ y: -50, duration: 200, delay: 200 * (i + 1) }}
-							class="font-bold lg:text-9xl md:text-7xl sm:text-4xl uppercase  {i % 2 == 0
+							class="font-bold lg:text-9xl md:text-7xl sm:text-4xl uppercase hover:-translate-y-4 transition duration-200 ease-out  {i %
+								2 ==
+							0
 								? 'different-font'
 								: ''}"
 						>
@@ -112,10 +121,9 @@
 				<div class="personal-text-inverse w-full flex">
 					{#each likes2 as like, i}
 						<p
-							in:fly={{ y: -50, duration: 200, delay: 200 * (i + 1) }}
-							class="font-bold lg:text-9xl md:text-7xl sm:text-4xl uppercase  {i % 2 == 0
-								? 'different-font'
-								: ''}"
+							class="font-bold lg:text-9xl md:text-7xl sm:text-4xl 
+							uppercase hover:-translate-y-4 transition duration-200 ease-out 
+							{i % 2 == 0 ? 'different-font' : ''}"
 						>
 							{like.name}
 						</p>
@@ -124,11 +132,17 @@
 			</div>
 		</div>
 	</div>
-	<div class="h-full flex items-center flex-col now-playing-layout">
+	<section id="devops" class="h-[1000px] flex flex-row justify-center items-center text-center">
+		<FullStack />
+	</section>
+	<section id="music" class="h-full flex items-center flex-col now-playing-layout">
 		<div class="text-6xl  z-10 mb-24 flex">
 			<p class="font-extralight">my&nbsp;</p>
 			<p
-				class="hover:text-green-600 font-normal transition duration-75 ease-in-out hover:font-bold w-56 text-center align-middle"
+				class="hover:text-green-600 w-56 text-center align-middle"
+				style="font-weight: {$spotifyWeight};"
+				on:mouseenter={() => spotifyWeight.set(700)}
+				on:mouseleave={() => spotifyWeight.set(400, { duration: 100 })}
 			>
 				spotify&nbsp;
 			</p>
@@ -143,7 +157,7 @@
 				</div>
 			{/key}
 		{/if}
-	</div>
+	</section>
 </div>
 
 <style lang="scss">
@@ -164,5 +178,11 @@
 	}
 
 	.personal-text {
+	}
+
+	.blue-gradient {
+		background-image: url('/blue_gradient.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
 	}
 </style>

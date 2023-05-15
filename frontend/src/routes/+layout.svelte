@@ -31,10 +31,10 @@
 		gsap.registerPlugin(ScrollTrigger);
 
 		ScrollTrigger.create({
-			animation: gsap.to('.logo', {
-				y: '0vh',
-				scale: 1,
-				yPercent: 0
+			animation: gsap.from('.logo', {
+				y: '50vh',
+				scale: 6,
+				yPercent: 50
 			}),
 			scrub: true,
 			trigger: '.content',
@@ -70,10 +70,7 @@
 	{#if isMobile() === false}
 		<Cursor />
 	{/if}
-	<div
-		in:fade={{ delay: 100, duration: 300 }}
-		class="navbar bg-neutral-focus fixed top-0 h-20 z-20 opacity-0"
-	>
+	<div class="navbar bg-neutral-focus fixed top-0 h-20 z-20 opacity-0">
 		<div class="navbar-start">
 			<div class="dropdown">
 				<label class="btn btn-ghost btn-circle">
@@ -134,7 +131,7 @@
 			</button>
 		</div>
 	</div>
-	<div in:fade={{ delay: 100, duration: 300 }} class="logo-container">
+	<div class="logo-container">
 		<img
 			class="logo h-20 drop-shadow duration-500 logo-middle"
 			src="/keyruu_logo.png"
@@ -199,9 +196,5 @@
 	.content {
 		width: 100%;
 		position: relative;
-	}
-
-	.logo-middle {
-		transform: translate(-50%, 0%) translate(0px, 50vh) scale(6);
 	}
 </style>

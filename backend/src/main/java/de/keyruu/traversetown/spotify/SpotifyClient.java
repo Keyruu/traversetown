@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.Date;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import org.apache.hc.core5.http.ParseException;
 import org.quartz.JobBuilder;
