@@ -12,8 +12,6 @@ scalar DateTime
 
 """Query root"""
 type Query {
-  """Say hello"""
-  sayHello(name: String = "World"): String
   spotifyTrack: SpotifyTrack
 }
 

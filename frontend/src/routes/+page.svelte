@@ -59,7 +59,6 @@
 			end: 'bottom top',
 			onUpdate: (self) => {
 				let proxy = self.getVelocity() / -250;
-				console.log(proxy);
 				if (Math.abs(proxy) < 20) {
 					skew.set(proxy, { duration: 0 });
 					skew.set(0);
@@ -78,7 +77,6 @@
 			end: 'bottom top',
 			onUpdate: (self) => {
 				let proxy = self.getVelocity() / -300;
-				console.log(proxy);
 				if (Math.abs(proxy) < 30) {
 					skew.set(proxy, { duration: 0 });
 					skew.set(0);
