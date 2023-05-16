@@ -23,7 +23,7 @@ jobs:
       - name: Build and Test with Maven
         run: |
           cd backend/
-          mvn -B clean package -Pnative --file pom.xml
+          mvn -B clean package --file pom.xml
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
