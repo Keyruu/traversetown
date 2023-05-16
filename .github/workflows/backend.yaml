@@ -39,6 +39,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: backend/
-          file: backend/src/main/docker/Dockerfile.native-micro
+          file: backend/src/main/docker/Dockerfile.jvm
           push: true
           tags: ghcr.io/keyruu/traversetown/roxas:latest
