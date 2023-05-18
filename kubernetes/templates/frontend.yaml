@@ -18,18 +18,6 @@ spec:
       containers:
         - name: frontend
           image: {{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}
-          startupProbe:
-            httpGet:
-              path: /q/health/live
-              port: 8080
-            failureThreshold: 3
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /q/health/live
-              port: 8080
-            initialDelaySeconds: 0
-            periodSeconds: 20
           resources:
             requests:
               memory: "300Mi"
@@ -40,3 +28,30 @@ spec:
           ports:
             - containerPort: 80
               name: app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - name: app
+      port: 80
+      targetPort: app
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: frontend
+  labels:
+    apisix.config: "true"
+data:
+  config: |
+    routes:
+      - uri: /*
+        upstream:
+          nodes:
+              "frontend:80": 1
+          type: roundrobin

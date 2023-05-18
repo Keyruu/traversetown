@@ -5,5 +5,6 @@ LABEL org.opencontainers.image.description="Frontend for traversetown"
 LABEL org.opencontainers.image.licenses=AGPL-3.0-only
 
 COPY build /etc/nginx/html
+COPY build /usr/share/nginx/html
 
 EXPOSE 80
