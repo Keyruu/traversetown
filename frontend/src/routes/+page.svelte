@@ -1,18 +1,12 @@
 <script lang="ts">
-	import { SubscribeSpotifyTrackStore } from '$houdini';
-	import CurrentTrack from '$lib/components/CurrentTrack.svelte';
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 
 	import FullStack from '$lib/components/FullStack.svelte';
 	import 'atropos/css';
 	import { cubicOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
-
-	const spotifyTrack = new SubscribeSpotifyTrackStore();
-	spotifyTrack.listen();
 
 	const likes = [
 		{ name: 'DevOps', image: 'keyruu_logo.png' },
@@ -146,7 +140,7 @@
 			</p>
 			<p class="font-extralight">activity:</p>
 		</div>
-		{#if $spotifyTrack.data == null}
+		<!-- {#if $spotifyTrack.data == null}
 			Waiting for song...
 		{:else}
 			{#key $spotifyTrack.data.subSpotifyTrack?.spotifyId}
@@ -154,7 +148,7 @@
 					<CurrentTrack spotifyTrack={$spotifyTrack.data} />
 				</div>
 			{/key}
-		{/if}
+		{/if} -->
 	</section>
 </div>
 
@@ -176,11 +170,5 @@
 	}
 
 	.personal-text {
-	}
-
-	.blue-gradient {
-		background-image: url('/blue_gradient.jpg');
-		background-repeat: no-repeat;
-		background-size: cover;
 	}
 </style>
