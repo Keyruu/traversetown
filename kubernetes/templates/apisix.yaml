@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apisix
+spec:
+  selector:
+    matchLabels:
+      app: apisix
+  template:
+    metadata:
+      labels:
+        app: apisix
+    spec:
+      {{- if .Values.global.imagePullSecret }}
+      imagePullSecrets:
+        - name: "{{ .Values.global.imagePullSecret }}"
+      {{- end }}
+      serviceAccountName: apifix
+      volumes:
+        - name: config
+      containers:
+        - name: apisix
+          image: {{ .Values.apisix.image.repository }}:{{ .Values.apisix.image.tag }}
+          env:
+            - name: APISIX_STAND_ALONE
+              value: "true"
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "300m"
+            limits:
+              memory: "2000Mi"
+              cpu: "1000m"
+          ports:
+            - containerPort: 9080
+              name: apisix
+          volumeMounts:
+            - name: config
+              mountPath: /usr/local/apisix/mnt-conf
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "rm /usr/local/apisix/conf/apisix.yaml && ln -s /usr/local/apisix/mnt-conf/apisix.yaml /usr/local/apisix/conf/apisix.yaml"]
+        - name: apifix
+          image: {{ .Values.apifix.image.repository }}:{{ .Values.apifix.image.tag }}
+          env:
+            - name: APIFIX_CONFIG_PATH
+              value: "/work/config/apisix.yaml"
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "200m"
+            limits:
+              memory: "200Mi"
+              cpu: "200m"
+          ports:
+            - containerPort: 8080
+              name: apifix
+          volumeMounts:
+            - name: config
+              mountPath: /work/config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apisix
+spec:
+  selector:
+    app: apisix
+  ports:
+    - name: apisix
+      port: 80
+      targetPort: apisix
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apisix
+  labels:
+    name: apisix
+  annotations:
+    {{- if .Values.certManager.issuer }}
+    cert-manager.io/cluster-issuer: "{{ .Values.certManager.issuer }}"
+    {{- end }}
+spec:
+  {{- if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- end }}
+  tls:
+    - hosts:
+        - "{{ .Values.ingress.host }}"
+      secretName: apisix-tls
+  rules:
+    - host: "{{ .Values.ingress.host }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: apisix
+                port:
+                  name: apisix

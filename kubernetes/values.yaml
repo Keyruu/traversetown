@@ -1,0 +1,34 @@
+global:
+  imagePullSecret:
+
+certManager:
+  issuer: "le-prod"
+
+ingress:
+  host: keyruu.de
+  className:
+
+apisix:
+  image:
+    repository: "apache/apisix"
+    tag: "3.3.0-debian"
+
+apifix:
+  image:
+    repository: "ghcr.io/keyruu/apifix"
+    tag: "latest"
+
+backend:
+  image:
+    repository: "ghcr.io/keyruu/traversetown/roxas"
+    tag: "latest"
+
+frontend:
+  image:
+    repository: "ghcr.io/keyruu/traversetown/frontend"
+    tag: "latest"
+
+postgres:
+  image:
+    repository: "postgres"
+    tag: "14-alpine"

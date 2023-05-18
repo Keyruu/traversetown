@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      {{- if .Values.global.imagePullSecret }}
+      imagePullSecrets:
+        - name: "{{ .Values.global.imagePullSecret }}"
+      {{- end }}
+      containers:
+        - name: backend
+          image: {{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}
+          env:
+            - name: SPOTIFY_CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: spotify
+                  key: secret
+            - name: SPOTIFY_REFRESHTOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: spotify
+                  key: refresh-token
+            - name: QUARKUS_DATASOURCE_JDBC_URL
+              value: jdbc:postgresql://postgres:5432/traversetown
+            - name: QUARKUS_DATASOURCE_USERNAME
+              value: roxas
+            - name: QUARKUS_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: password
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "100m"
+            limits:
+              memory: "1000Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+              name: app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - name: app
+      port: 80
+      targetPort: app
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: backend
+  labels:
+    apisix.config: "true"
+data:
+  config: |
+    routes:
+      - uri: /graphql
+        upstream:
+          nodes:
+              "backend:80": 1
+          type: roundrobin
