@@ -3,10 +3,7 @@ package de.keyruu.traversetown.spotify;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.Date;
-
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
+import java.util.logging.Logger;
 
 import org.apache.hc.core5.http.ParseException;
 import org.quartz.JobBuilder;
@@ -19,6 +16,9 @@ import org.quartz.TriggerBuilder;
 import de.keyruu.traversetown.model.SpotifyTrack;
 import io.quarkus.scheduler.Scheduled;
 import io.smallrye.mutiny.operators.multi.processors.BroadcastProcessor;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.miscellaneous.CurrentlyPlaying;
@@ -28,6 +28,8 @@ import se.michaelthelin.spotify.model_objects.specification.Track;
 @ApplicationScoped
 public class SpotifyClient
 {
+  private static final Logger LOG = Logger.getLogger(SpotifyClient.class.getName());
+
   @Inject
   SpotifyApi api;
 
@@ -58,7 +60,7 @@ public class SpotifyClient
     }
     catch (SchedulerException e)
     {
-      e.printStackTrace();
+      throw new RuntimeException();
     }
   }
 
@@ -79,13 +81,13 @@ public class SpotifyClient
       if (execute == null)
       {
         PlayHistory[] items = api.getCurrentUsersRecentlyPlayedTracks().build().execute().getItems();
-        System.out.println(items[0].getTrack().getName() + " " + items[0].getPlayedAt());
+        LOG.info(items[0].getTrack().getName() + " " + items[0].getPlayedAt());
 
         savedTrack.setLastPlayed(items[0], api.getTrack(items[0].getTrack().getId()).build().execute());
       }
       else if (execute.getItem() instanceof Track)
       {
-        System.out.println(execute.getItem().getName() + " " + ((float)execute.getProgress_ms() / execute.getItem().getDurationMs() * 100) + "%");
+        LOG.info(execute.getItem().getName() + " " + ((float)execute.getProgress_ms() / execute.getItem().getDurationMs() * 100) + "%");
 
         savedTrack.setCurrent(execute);
       }
@@ -94,7 +96,7 @@ public class SpotifyClient
     }
     catch (ParseException | SpotifyWebApiException | IOException e)
     {
-      e.printStackTrace();
+      throw new RuntimeException(e);
     }
   }
 
