@@ -41,4 +41,4 @@ jobs:
           context: frontend/
           file: frontend/docker/image/Dockerfile
           push: true
-          tags: ghcr.io/keyruu/nexcalimat/frontend:latest
+          tags: ghcr.io/keyruu/traversetown/frontend:latest
