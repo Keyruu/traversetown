@@ -34,7 +34,7 @@ public class RefreshJob implements Job
     }
     catch (ParseException | SpotifyWebApiException | IOException e)
     {
-      throw new RuntimeException();
+      throw new RuntimeException(e);
     }
   }
 

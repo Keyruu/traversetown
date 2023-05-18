@@ -60,7 +60,7 @@ public class SpotifyClient
     }
     catch (SchedulerException e)
     {
-      throw new RuntimeException();
+      throw new RuntimeException(e);
     }
   }
 
