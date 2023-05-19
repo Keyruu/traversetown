@@ -1,15 +1,15 @@
 <script lang="ts">
-	import type { SubscribeSpotifyTrack$result } from '$houdini';
 	import Icon from '@iconify/svelte';
 	import ColorThief, { type Color } from 'colorthief';
-	import { linear, cubicOut } from 'svelte/easing';
+	import { cubicOut, linear } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
 	import { fade } from 'svelte/transition';
 
+	import type { SpotifyTrack } from '$lib/generated/graphql';
 	import { extraStyles, getStylesString, icon, resetMouse, scale } from '$lib/store/cursor';
 	import 'atropos/css';
 
-	export let spotifyTrack: SubscribeSpotifyTrack$result;
+	export let spotifyTrack: SpotifyTrack;
 
 	function getProgress(progressMs: number, durationMs: number): number {
 		return (progressMs / durationMs) * 100;
@@ -22,9 +22,9 @@
 	let durationMs: number;
 	let progressMs: number;
 	let isTooDark: boolean;
-	$: if (spotifyTrack && spotifyTrack?.subSpotifyTrack?.isCurrent) {
-		progressMs = spotifyTrack!.subSpotifyTrack!.progressMs!;
-		durationMs = spotifyTrack!.subSpotifyTrack!.durationMs!;
+	$: if (spotifyTrack && spotifyTrack.isCurrent) {
+		progressMs = spotifyTrack.progressMs!;
+		durationMs = spotifyTrack.durationMs!;
 		progress.set(getProgress(progressMs, durationMs));
 	}
 
@@ -81,14 +81,14 @@
 			coverTranslateY = 0;
 		}}
 		on:mousemove={coverMouseMoved}
-		href={spotifyTrack.subSpotifyTrack?.songLink}
+		href={spotifyTrack.songLink}
 		target="_blank"
 		rel="noreferrer"
 		style={`
           transform: translate(${coverTranslateX}px, ${coverTranslateY}px) scale(${$coverScale});
         `}
 	>
-		{#if spotifyTrack.subSpotifyTrack?.isCurrent === false || spotifyTrack.subSpotifyTrack?.isPlaying === false}
+		{#if spotifyTrack.isCurrent === false || spotifyTrack.isPlaying === false}
 			<div in:fade={{ duration: 200 }} class="content z-10 m-auto text-black opacity-60">
 				<Icon icon="material-symbols:pause" width="300" height="300" />
 			</div>
@@ -104,10 +104,10 @@
 			bind:this={img}
 			crossorigin="anonymous"
 			class="rounded-lg shadow-lg cover content"
-			src={spotifyTrack.subSpotifyTrack?.coverUrl}
+			src={spotifyTrack.coverUrl}
 			alt="albumCover"
 		/>
-		{#if spotifyTrack.subSpotifyTrack?.isPlaying}
+		{#if spotifyTrack.isPlaying}
 			<div
 				in:fade={{ duration: 200 }}
 				class="content cover rounded-lg"
@@ -124,9 +124,9 @@
 				isTooDark ? 'text-slate-300' : 'text-gray-900'
 			}`}
 		>
-			<p class="font-semibold">{spotifyTrack.subSpotifyTrack?.trackName}</p>
+			<p class="font-semibold">{spotifyTrack.trackName}</p>
 			&nbsp;—&nbsp;
-			<p class="font-light">{spotifyTrack.subSpotifyTrack?.artistName}</p>
+			<p class="font-light">{spotifyTrack.artistName}</p>
 		</h1>
 	</div>
 </div>

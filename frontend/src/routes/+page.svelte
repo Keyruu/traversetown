@@ -96,7 +96,7 @@
 <div>
 	<div class="foggy-sea w-full mb-24 flex flex-col justify-center">
 		<p
-			class="mix-blend-difference lg:text-8xl md:text-6xl mb-8 font-thin w-full text-center sm:text-3xl"
+			class="mix-blend-difference lg:text-8xl md:text-6xl mb-8 font-thin w-full text-center text-4xl"
 		>
 			i like
 		</p>
@@ -108,7 +108,7 @@
 				<div class="personal-text w-full flex">
 					{#each likes as like, i}
 						<p
-							class="font-bold lg:text-9xl md:text-7xl sm:text-4xl uppercase hover:-translate-y-4 transition duration-200 ease-out  {i %
+							class="font-bold lg:text-9xl md:text-7xl text-4xl uppercase hover:-translate-y-4 transition duration-200 ease-out  {i %
 								2 ==
 							0
 								? 'different-font'
@@ -126,7 +126,7 @@
 				<div class="personal-text-inverse w-full flex">
 					{#each likes2 as like, i}
 						<p
-							class="font-bold lg:text-9xl md:text-7xl sm:text-4xl 
+							class="font-bold lg:text-9xl md:text-7xl text-4xl 
 							uppercase hover:-translate-y-4 transition duration-200 ease-out 
 							{i % 2 == 0 ? 'different-font' : ''}"
 						>
@@ -144,10 +144,10 @@
 		<FullStack />
 	</section>
 	<section id="music" class="h-full flex items-center flex-col now-playing-layout">
-		<div class="text-6xl  z-10 mb-24 flex">
+		<div class="md:text-6xl text-4xl  z-10 mb-24 flex">
 			<p class="font-extralight">my&nbsp;</p>
 			<p
-				class="hover:text-green-600 w-56 text-center align-middle"
+				class="hover:text-green-600 md:w-56 w-32 text-center align-middle"
 				style="font-weight: {$spotifyWeight};"
 				on:mouseenter={() => spotifyWeight.set(700)}
 				on:mouseleave={() => spotifyWeight.set(400, { duration: 100 })}
@@ -156,12 +156,12 @@
 			</p>
 			<p class="font-extralight">activity:</p>
 		</div>
-		{#if $spotifyTrack.data == null}
+		{#if $spotifyTrack.data?.subSpotifyTrack == null}
 			Waiting for song...
 		{:else}
 			{#key $spotifyTrack.data.subSpotifyTrack?.spotifyId}
 				<div in:fade={{ duration: 1000 }}>
-					<CurrentTrack spotifyTrack={$spotifyTrack.data} />
+					<CurrentTrack spotifyTrack={$spotifyTrack.data.subSpotifyTrack} />
 				</div>
 			{/key}
 		{/if}
