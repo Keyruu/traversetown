@@ -15,7 +15,7 @@
 </script>
 
 <div
-	class="border-[1px] border-gray-500 sm:w-3/12 w-1/3 sm:h-4/6 h-3/6 flex flex-col justify-center items-center group hover:bg-white"
+	class="border-[1px] border-gray-500 sm:w-3/12 w-full sm:h-4/6 h-3/6 flex flex-col justify-center items-center group hover:bg-white"
 	on:mouseenter={() => (isHovered = true)}
 	on:mouseleave={() => (isHovered = false)}
 >

@@ -42,6 +42,29 @@
 		{ name: 'Design', image: 'keyruu_logo.png' }
 	];
 
+	const releases = [
+		{
+			artists: ['Keyruu'],
+			songtitle: 'fuck you',
+			primary_color: '#ff0000',
+			coverart: JSON.stringify([
+				{
+					url: 'https://m.media-amazon.com/images/I/516NNua6+dL._UX358_FMjpg_QL85_.jpg'
+				}
+			])
+		},
+		{
+			artists: ['Keyruu'],
+			songtitle: 'kaka',
+			primary_color: '#ff0000',
+			coverart: JSON.stringify([
+				{
+					url: 'https://m.media-amazon.com/images/I/516NNua6+dL._UX358_FMjpg_QL85_.jpg'
+				}
+			])
+		}
+	];
+
 	let skew = tweened(0, {
 		duration: 800,
 		easing: cubicOut
@@ -139,40 +162,47 @@
 	</div>
 	<section
 		id="devops"
-		class="h-[1000px] flex flex-row justify-center items-center text-center w-full"
+		class="h-[1000px] sm:mb-0 mb-20 flex sm:flex-row flex-col justify-center items-center text-center w-full"
 	>
 		<FullStack />
-	</section>
-	<section id="music" class="h-full flex items-center flex-col now-playing-layout">
-		<div class="md:text-6xl text-4xl  z-10 mb-24 flex">
-			<p class="font-extralight">my&nbsp;</p>
-			<p
-				class="hover:text-green-600 md:w-56 w-32 text-center align-middle"
-				style="font-weight: {$spotifyWeight};"
-				on:mouseenter={() => spotifyWeight.set(700)}
-				on:mouseleave={() => spotifyWeight.set(400, { duration: 100 })}
-			>
-				spotify&nbsp;
-			</p>
-			<p class="font-extralight">activity:</p>
+		<!-- </section>
+	<section id="keyruu" class=" mb-20 flex flex-col items-center">
+		<div class="md:text-6xl text-4xl  z-10 flex">
+			<p class="font-semibold">my&nbsp;</p>
+			<p class="font-extralight">music:</p>
 		</div>
-		{#if $spotifyTrack.data?.subSpotifyTrack == null}
-			Waiting for song...
-		{:else}
-			{#key $spotifyTrack.data.subSpotifyTrack?.spotifyId}
-				<div in:fade={{ duration: 1000 }}>
-					<CurrentTrack spotifyTrack={$spotifyTrack.data.subSpotifyTrack} />
-				</div>
-			{/key}
-		{/if}
+		<Releases {releases} />
+	</section> -->
+		<section
+			id="music"
+			class="sm:h-[800px] sm:mb-0 mb-20 h-[500px] flex items-center flex-col now-playing-layout"
+		>
+			<div class="md:text-6xl text-4xl z-10 sm:mb-24 mb-16 flex">
+				<p class="font-extralight">my&nbsp;</p>
+				<p
+					class="hover:text-green-600 md:w-56 w-32 text-center align-middle"
+					style="font-weight: {$spotifyWeight};"
+					on:mouseenter={() => spotifyWeight.set(700)}
+					on:mouseleave={() => spotifyWeight.set(400, { duration: 100 })}
+				>
+					spotify&nbsp;
+				</p>
+				<p class="font-extralight">activity:</p>
+			</div>
+			{#if $spotifyTrack.data?.subSpotifyTrack == null}
+				Waiting for song...
+			{:else}
+				{#key $spotifyTrack.data.subSpotifyTrack?.spotifyId}
+					<div in:fade={{ duration: 1000 }}>
+						<CurrentTrack spotifyTrack={$spotifyTrack.data.subSpotifyTrack} />
+					</div>
+				{/key}
+			{/if}
+		</section>
 	</section>
 </div>
 
 <style lang="scss">
-	.now-playing-layout {
-		height: 1000px;
-	}
-
 	.different-font {
 		font-family: 'Montagu Slab', serif;
 		font-weight: 300;
