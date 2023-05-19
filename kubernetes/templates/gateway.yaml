@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+spec:
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      {{- if .Values.global.imagePullSecret }}
+      imagePullSecrets:
+        - name: "{{ .Values.global.imagePullSecret }}"
+      {{- end }}
+      containers:
+        - name: gateway
+          image: {{ .Values.gateway.image.repository }}:{{ .Values.gateway.image.tag }}
+          env:
+            - name: SERVICES
+              value: http://backend/graphql
+          resources:
+            requests:
+              memory: "400Mi"
+              cpu: "300m"
+            limits:
+              memory: "400Mi"
+              cpu: "300m"
+          ports:
+            - containerPort: 4000
+              name: app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+spec:
+  selector:
+    app: gateway
+  ports:
+    - name: app
+      port: 80
+      targetPort: app
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: gateway
+  labels:
+    apisix.config: "true"
+data:
+  config: |
+    routes:
+      - uri: /graphql
+        enable_websocket: true
+        upstream:
+          nodes:
+              "gateway:80": 1
+          type: roundrobin

@@ -23,6 +23,11 @@ backend:
     repository: "ghcr.io/keyruu/traversetown/roxas"
     tag: "latest"
 
+gateway:
+  image:
+    repository: "ghcr.io/keyruu/traversetown/gateway"
+    tag: "latest"
+
 frontend:
   image:
     repository: "ghcr.io/keyruu/traversetown/frontend"
