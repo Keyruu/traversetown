@@ -3,10 +3,23 @@
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { onMount } from 'svelte';
 
+	import CurrentTrack from '$lib/components/CurrentTrack.svelte';
 	import FullStack from '$lib/components/FullStack.svelte';
+	import {
+		SubscribeSpotifyTrackDocument,
+		type SubscribeSpotifyTrackSubscription
+	} from '$lib/generated/graphql';
+	import { subscriptionStore } from '@urql/svelte';
 	import 'atropos/css';
 	import { cubicOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
+	import { fade } from 'svelte/transition';
+	import { client } from '../client';
+
+	const spotifyTrack = subscriptionStore<SubscribeSpotifyTrackSubscription>({
+		client,
+		query: SubscribeSpotifyTrackDocument
+	});
 
 	const likes = [
 		{ name: 'DevOps', image: 'keyruu_logo.png' },
@@ -140,7 +153,7 @@
 			</p>
 			<p class="font-extralight">activity:</p>
 		</div>
-		<!-- {#if $spotifyTrack.data == null}
+		{#if $spotifyTrack.data == null}
 			Waiting for song...
 		{:else}
 			{#key $spotifyTrack.data.subSpotifyTrack?.spotifyId}
@@ -148,7 +161,7 @@
 					<CurrentTrack spotifyTrack={$spotifyTrack.data} />
 				</div>
 			{/key}
-		{/if} -->
+		{/if}
 	</section>
 </div>
 
