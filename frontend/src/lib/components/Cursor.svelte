@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { coords, scale, extraStyles, icon } from '$lib/store/cursor';
+	import { coords, extraStyles, icon, scale } from '$lib/store/cursor';
 	import Icon from '@iconify/svelte';
 </script>
 
@@ -30,5 +30,11 @@
 		user-select: none;
 		background: #000000;
 		z-index: 9999;
+	}
+
+	@media (pointer: none), (pointer: coarse) {
+		.cursor {
+			visibility: hidden;
+		}
 	}
 </style>
