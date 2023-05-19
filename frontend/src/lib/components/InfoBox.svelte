@@ -15,7 +15,7 @@
 </script>
 
 <div
-	class="border-[1px] border-gray-500 w-3/12 h-4/6 flex flex-col justify-center items-center group hover:bg-white"
+	class="border-[1px] border-gray-500 sm:w-3/12 w-1/3 sm:h-4/6 h-3/6 flex flex-col justify-center items-center group hover:bg-white"
 	on:mouseenter={() => (isHovered = true)}
 	on:mouseleave={() => (isHovered = false)}
 >
@@ -40,7 +40,9 @@
 			{/each}
 		{/if}
 	</div>
-	<h1 class="mix-blend-difference font-bold text-3xl group-hover:scale-125 transition duration-300">
+	<h1
+		class="mix-blend-difference font-bold md:text-3xl sm:text-xl group-hover:scale-125 transition duration-300"
+	>
 		{text}
 	</h1>
 	<div class="flex-row flex-1 flex justify-center items-center w-full">

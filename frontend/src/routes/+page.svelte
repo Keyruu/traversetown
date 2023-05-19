@@ -137,7 +137,10 @@
 			</div>
 		</div>
 	</div>
-	<section id="devops" class="h-[1000px] flex flex-row justify-center items-center text-center">
+	<section
+		id="devops"
+		class="h-[1000px] flex flex-row justify-center items-center text-center w-full"
+	>
 		<FullStack />
 	</section>
 	<section id="music" class="h-full flex items-center flex-col now-playing-layout">
