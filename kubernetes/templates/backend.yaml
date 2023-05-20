@@ -60,3 +60,19 @@ spec:
     - name: app
       port: 80
       targetPort: app
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: backend
+  labels:
+    apisix.config: "true"
+data:
+  config: |
+    routes:
+      - uri: /graphql
+        enable_websocket: true
+        upstream:
+          nodes:
+              "backend:80": 1
+          type: roundrobin
