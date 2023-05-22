@@ -20,7 +20,7 @@
 	}
 
 	function extractImageURL(cover: any) {
-		return `${PUBLIC_NOCODB_URL}${cover[0].path}`;
+		return `${PUBLIC_NOCODB_URL}/${cover[0].path}`;
 	}
 
 	function tripleMouse() {

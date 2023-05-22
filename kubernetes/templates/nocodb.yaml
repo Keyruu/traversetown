@@ -76,6 +76,9 @@ data:
     routes:
       - uri: /*
         host: {{ .Values.nocodb.host }}
+        plugins:
+          cors:
+            allow_origins: "https://keyruu.de"
         upstream:
           nodes:
               "nocodb:80": 1
@@ -96,3 +99,4 @@ data:
           type: roundrobin
     plugins:
       - name: proxy-rewrite
+      - name: cors
