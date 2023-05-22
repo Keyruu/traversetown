@@ -1,5 +1,6 @@
 global:
   imagePullSecret:
+  storageClass: local-path
 
 certManager:
   issuer: "le-prod"
@@ -26,6 +27,12 @@ backend:
 frontend:
   image:
     repository: "ghcr.io/keyruu/traversetown/frontend"
+    tag: "latest"
+
+nocodb:
+  host: nocodb.keyruu.de
+  image:
+    repository: "nocodb/nocodb"
     tag: "latest"
 
 postgres:

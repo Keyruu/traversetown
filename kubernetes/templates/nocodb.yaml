@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nocodb
+spec:
+  selector:
+    matchLabels:
+      app: nocodb
+  serviceName: nocodb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nocodb
+    spec:
+      containers:
+        - name: nocodb
+          image: "{{ .Values.nocodb.image.repository }}:{{ .Values.nocodb.image.tag }}"
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+              name: app
+          env:
+            - name: NC_DB
+              valueFrom:
+                secretKeyRef:
+                  name: nocodb
+                  key: db-url
+            - name: NC_AUTH_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: nocodb
+                  key: jwt-secret
+          volumeMounts:
+            - name: data
+              mountPath: /usr/app/data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        {{- if .Values.global.storageClass }}
+        storageClassName: {{ .Values.global.storageClass }}
+        {{- end }}
+        resources:
+          requests:
+            storage: 4Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nocodb
+spec:
+  selector:
+    app: nocodb
+  ports:
+    - name: app
+      port: 80
+      targetPort: app
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nocodb
+  labels:
+    apisix.config: "true"
+data:
+  config: |
+    routes:
+      - uri: /*
+        host: {{ .Values.nocodb.host }}
+        upstream:
+          nodes:
+              "nocodb:80": 1
+          type: roundrobin
+      - uri: /api/v1/releases
+        host: {{ .Values.ingress.host }}
+        methods:
+          - GET
+        plugins:
+          proxy-rewrite:
+            uri: "/api/v1/db/data/v1/releases/releases?sort=-release_date"
+            headers:
+              set:
+                xc-token: ${secret:nocodb-token.token}
+        upstream:
+          nodes:
+              "nocodb:80": 1
+          type: roundrobin
+    plugins:
+      - name: proxy-rewrite

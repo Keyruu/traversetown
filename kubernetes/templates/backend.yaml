@@ -38,13 +38,8 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: password
-          resources:
-            requests:
-              memory: "500Mi"
-              cpu: "100m"
-            limits:
-              memory: "1000Mi"
-              cpu: "500m"
+            - name: QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION
+              value: update
           ports:
             - containerPort: 8080
               name: app

@@ -83,6 +83,7 @@ metadata:
     {{- if .Values.certManager.issuer }}
     cert-manager.io/cluster-issuer: "{{ .Values.certManager.issuer }}"
     {{- end }}
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
 spec:
   {{- if .Values.ingress.className }}
   ingressClassName: {{ .Values.ingress.className }}
@@ -91,8 +92,21 @@ spec:
     - hosts:
         - "{{ .Values.ingress.host }}"
       secretName: apisix-tls
+    - hosts:
+        - "{{ .Values.nocodb.host }}"
+      secretName: nocodb-tls
   rules:
     - host: "{{ .Values.ingress.host }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: apisix
+                port:
+                  name: apisix
+    - host: "{{ .Values.nocodb.host }}"
       http:
         paths:
           - pathType: Prefix
