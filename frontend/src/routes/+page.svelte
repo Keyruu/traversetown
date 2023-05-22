@@ -5,6 +5,7 @@
 
 	import CurrentTrack from '$lib/components/CurrentTrack.svelte';
 	import FullStack from '$lib/components/FullStack.svelte';
+	import Releases from '$lib/components/Releases.svelte';
 	import {
 		SubscribeSpotifyTrackDocument,
 		type SubscribeSpotifyTrackSubscription
@@ -42,28 +43,7 @@
 		{ name: 'Design', image: 'keyruu_logo.png' }
 	];
 
-	const releases = [
-		{
-			artists: ['Keyruu'],
-			songtitle: 'fuck you',
-			primary_color: '#ff0000',
-			coverart: JSON.stringify([
-				{
-					url: 'https://m.media-amazon.com/images/I/516NNua6+dL._UX358_FMjpg_QL85_.jpg'
-				}
-			])
-		},
-		{
-			artists: ['Keyruu'],
-			songtitle: 'kaka',
-			primary_color: '#ff0000',
-			coverart: JSON.stringify([
-				{
-					url: 'https://m.media-amazon.com/images/I/516NNua6+dL._UX358_FMjpg_QL85_.jpg'
-				}
-			])
-		}
-	];
+	let releases: any;
 
 	let skew = tweened(0, {
 		duration: 800,
@@ -75,7 +55,7 @@
 		easing: cubicOut
 	});
 
-	onMount(() => {
+	onMount(async () => {
 		gsap.registerPlugin(ScrollTrigger);
 
 		ScrollTrigger.create({
@@ -113,6 +93,9 @@
 				}
 			}
 		});
+
+		const res = await fetch('https://keyruu.de/api/v1/releases');
+		releases = (await res.json()).list;
 	});
 </script>
 
@@ -166,16 +149,20 @@
 	>
 		<FullStack />
 	</section>
-	<!-- <section id="keyruu" class=" mb-20 flex flex-col items-center">
+	<section id="keyruu" class=" mb-20 flex flex-col items-center">
 		<div class="md:text-6xl text-4xl  z-10 flex">
 			<p class="font-semibold">my&nbsp;</p>
 			<p class="font-extralight">music:</p>
 		</div>
-		<Releases {releases} />
-	</section> -->
+		{#if releases}
+			<Releases {releases} />
+		{:else}
+			<p class="text-4xl">Loading...</p>
+		{/if}
+	</section>
 	<section
 		id="music"
-		class="sm:h-[800px] sm:mb-0 mb-20 h-[500px] flex items-center flex-col now-playing-layout"
+		class="lg:h-[1000px] md:h-[800px] sm:h-[600px] sm:mb-0 mb-20 h-[500px] flex items-center flex-col now-playing-layout"
 	>
 		<div class="md:text-6xl text-4xl z-10 sm:mb-24 mb-16 flex">
 			<p class="font-extralight">my&nbsp;</p>

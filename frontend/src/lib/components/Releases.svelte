@@ -2,6 +2,8 @@
 	import { register } from 'swiper/element/bundle';
 	import Cover from './Cover.svelte';
 	// Import Swiper styles
+	import { PUBLIC_NOCODB_URL } from '$env/static/public';
+	import { changeMouse, getStylesString, resetMouse } from '$lib/store/cursor';
 	import 'swiper/css';
 	import 'swiper/css/effect-coverflow';
 	import 'swiper/css/navigation';
@@ -17,8 +19,16 @@
 		slideIndex = event.detail[0].activeIndex;
 	}
 
-	function extractImageURL(coverart: string) {
-		return JSON.parse(coverart)[0].url;
+	function extractImageURL(cover: any) {
+		return `${PUBLIC_NOCODB_URL}${cover[0].path}`;
+	}
+
+	function tripleMouse() {
+		changeMouse(3, getStylesString('#fff', 'difference'));
+	}
+
+	function doubleMouse() {
+		changeMouse(2, getStylesString('#fff', 'difference'));
 	}
 </script>
 
@@ -43,7 +53,11 @@
 			>
 				{#each releases as release}
 					<swiper-slide class="flex items-center justify-center">
-						<Cover on:enter on:leave image={extractImageURL(release.coverart)} />
+						<Cover
+							on:enter={tripleMouse}
+							on:leave={resetMouse}
+							image={extractImageURL(release.cover)}
+						/>
 					</swiper-slide>
 				{/each}
 			</swiper-container>
@@ -65,8 +79,8 @@
 				height={50}
 				link={releases[slideIndex].spotify}
 				highlightColor={releases[slideIndex].primary_color}
-				on:mouseenter
-				on:mouseleave
+				on:customMouseEnter={doubleMouse}
+				on:customMouseLeave={resetMouse}
 			/>
 			<IconLink
 				icon="fa-apple"
@@ -75,8 +89,8 @@
 				height={50}
 				link={releases[slideIndex].apple}
 				highlightColor={releases[slideIndex].primary_color}
-				on:mouseenter
-				on:mouseleave
+				on:customMouseEnter={doubleMouse}
+				on:customMouseLeave={resetMouse}
 			/>
 			<IconLink
 				icon="fa-youtube"
@@ -85,8 +99,8 @@
 				height={50}
 				link={releases[slideIndex].youtube}
 				highlightColor={releases[slideIndex].primary_color}
-				on:mouseenter
-				on:mouseleave
+				on:customMouseEnter={doubleMouse}
+				on:customMouseLeave={resetMouse}
 			/>
 		</div>
 	</div>
@@ -134,6 +148,7 @@
 	@media only screen and (min-width: 1540px) {
 		.custom-swiper {
 			height: 60vh;
+			width: 60vh;
 		}
 	}
 </style>

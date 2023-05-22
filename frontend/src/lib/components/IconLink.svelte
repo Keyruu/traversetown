@@ -1,5 +1,8 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let iconColor = '#3f3f46';
 	let currentColor = iconColor;
@@ -15,8 +18,12 @@
 <a
 	on:mouseenter={() => {
 		currentColor = highlightColor;
+		dispatch('customMouseEnter');
 	}}
-	on:mouseleave={() => (currentColor = iconColor)}
+	on:mouseleave={() => {
+		currentColor = iconColor;
+		dispatch('customMouseLeave');
+	}}
 	class="{margin} transition duration-500 hover:scale-110 {extraClasses}"
 	style="color: {currentColor}"
 	href={link}
