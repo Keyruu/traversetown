@@ -39,3 +39,8 @@ postgres:
   image:
     repository: "postgres"
     tag: "14-alpine"
+
+nocodbPostgres:
+  image:
+    repository: "postgres"
+    tag: "14-alpine"

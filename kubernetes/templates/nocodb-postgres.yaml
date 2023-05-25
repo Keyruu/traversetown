@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgres
+  name: nocodb-postgres
 spec:
   selector:
     matchLabels:
-      app: postgres
-  serviceName: postgres
+      app: nocodb-postgres
+  serviceName: nocodb-postgres
   replicas: 1
   template:
     metadata:
       labels:
-        app: postgres
+        app: nocodb-postgres
     spec:
       containers:
-        - name: postgres
-          image: "{{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}"
+        - name: nocodb-postgres
+          image: "{{ .Values.nocodbPostgres.image.repository }}:{{ .Values.nocodbPostgres.image.tag }}"
           ports:
             - containerPort: 5432
               name: pg
@@ -23,13 +23,13 @@ spec:
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
             - name: POSTGRES_DB
-              value: traversetown
+              value: nocodb
             - name: POSTGRES_USER
-              value: roxas
+              value: noco
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres
+                  name: nocodb-postgres
                   key: password
           volumeMounts:
             - name: data
@@ -50,10 +50,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres
+  name: nocodb-postgres
 spec:
   selector:
-    app: postgres
+    app: nocodb-postgres
   ports:
     - name: pg
       port: 5432

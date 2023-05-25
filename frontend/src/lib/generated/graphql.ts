@@ -12,18 +12,22 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** Scalar for BigDecimal */
   BigDecimal: number;
-  /** Scalar for BigInteger */
   BigInteger: number;
-  /** Scalar for DateTime */
   DateTime: string;
 };
 
 /** Query root */
 export type Query = {
   __typename?: 'Query';
+  playcount?: Maybe<Scalars['Int']>;
   spotifyTrack?: Maybe<SpotifyTrack>;
+};
+
+
+/** Query root */
+export type QueryPlaycountArgs = {
+  artist?: InputMaybe<Scalars['String']>;
 };
 
 export type SpotifyTrack = {
@@ -48,12 +52,24 @@ export type Subscription = {
   subSpotifyTrack?: Maybe<SpotifyTrack>;
 };
 
+export type GetPlaycountQueryVariables = Exact<{
+  artist?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type GetPlaycountQuery = { __typename?: 'Query', playcount?: number | null };
+
 export type SubscribeSpotifyTrackSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
 export type SubscribeSpotifyTrackSubscription = { __typename?: 'Subscription', subSpotifyTrack?: { __typename?: 'SpotifyTrack', artistName?: string | null, trackName?: string | null, progressMs?: number | null, coverUrl?: string | null, isCurrent?: boolean | null, durationMs?: number | null, isPlaying?: boolean | null, songLink?: string | null, spotifyId?: string | null } | null };
 
 
+export const GetPlaycountDocument = gql`
+    query GetPlaycount($artist: String) {
+  playcount(artist: $artist)
+}
+    `;
 export const SubscribeSpotifyTrackDocument = gql`
     subscription SubscribeSpotifyTrack {
   subSpotifyTrack {

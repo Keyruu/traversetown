@@ -5,6 +5,7 @@
 
 	import CurrentTrack from '$lib/components/CurrentTrack.svelte';
 	import FullStack from '$lib/components/FullStack.svelte';
+	import HaveIListenedTo from '$lib/components/HaveIListenedTo.svelte';
 	import Releases from '$lib/components/Releases.svelte';
 	import {
 		SubscribeSpotifyTrackDocument,
@@ -159,6 +160,9 @@
 		{:else}
 			<p class="text-4xl">Loading...</p>
 		{/if}
+	</section>
+	<section id="haveilistenedto" class="bg-secondary-content mb-24">
+		<HaveIListenedTo />
 	</section>
 	<section
 		id="music"

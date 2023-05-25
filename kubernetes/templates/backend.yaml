@@ -29,6 +29,11 @@ spec:
                 secretKeyRef:
                   name: spotify
                   key: refresh-token
+            - name: LASTFM_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: lastfm
+                  key: api-key
             - name: QUARKUS_DATASOURCE_JDBC_URL
               value: jdbc:postgresql://postgres:5432/traversetown
             - name: QUARKUS_DATASOURCE_USERNAME
@@ -38,8 +43,6 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: password
-            - name: QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION
-              value: update
           ports:
             - containerPort: 8080
               name: app
