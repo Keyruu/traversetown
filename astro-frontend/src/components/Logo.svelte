@@ -5,7 +5,7 @@
 
 <img
   class="logo h-40 drop-shadow duration-500 logo-middle mt-auto"
-  src="/keyruu_logo.png"
+  src="/keyruu_logo.webp"
   alt="Keyruu"
   on:mouseenter={() => {
     scale.set(2);

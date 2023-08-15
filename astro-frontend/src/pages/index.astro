@@ -11,24 +11,24 @@ import Releases from "../components/Releases.svelte";
 import SpotifyActivity from "../components/SpotifyActivity.svelte";
 
 const likes = [
-  { name: "DevOps", image: "keyruu_logo.png" },
-  { name: "Music", image: "keyruu_logo.png" },
-  { name: "Design", image: "keyruu_logo.png" },
-  { name: "Gaming", image: "keyruu_logo.png" },
-  { name: "Frontend", image: "keyruu_logo.png" },
-  { name: "Backend", image: "keyruu_logo.png" },
-  { name: "Spezi", image: "keyruu_logo.png" },
-  { name: "DevOps", image: "keyruu_logo.png" },
+  { name: "DevOps" },
+  { name: "Music" },
+  { name: "Design" },
+  { name: "Gaming" },
+  { name: "Frontend" },
+  { name: "Backend" },
+  { name: "Spezi" },
+  { name: "DevOps" },
 ];
 const likes2 = [
-  { name: "Spezi", image: "keyruu_logo.png" },
-  { name: "Backend", image: "keyruu_logo.png" },
-  { name: "DevOps", image: "keyruu_logo.png" },
-  { name: "Design", image: "keyruu_logo.png" },
-  { name: "Gaming", image: "keyruu_logo.png" },
-  { name: "Music", image: "keyruu_logo.png" },
-  { name: "Frontend", image: "keyruu_logo.png" },
-  { name: "Design", image: "keyruu_logo.png" },
+  { name: "Spezi" },
+  { name: "Backend" },
+  { name: "DevOps" },
+  { name: "Design" },
+  { name: "Gaming" },
+  { name: "Music" },
+  { name: "Frontend" },
+  { name: "Design" },
 ];
 
 const res = await fetch("https://keyruu.de/api/v1/releases");
@@ -76,7 +76,7 @@ const releases = (await res.json()).list;
       itemprop="description"
       content="Personal website of Keyruu aka Lucas. Keyruu is a DevOps Engineer and full-stack developer. He also does music (hyperpop, rap, pop) and design. He uses Svelte, Java, Quarkus, GraphQL, Kubernetes, Helm, Hetzner, Go and Rust."
     />
-    <meta itemprop="image" content="https://keyruu.de/keyruu_logo.png" />
+    <meta itemprop="image" content="https://keyruu.de/keyruu_logo.webp" />
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://keyruu.de" />
@@ -86,7 +86,7 @@ const releases = (await res.json()).list;
       property="og:description"
       content="Personal website of Keyruu aka Lucas. Keyruu is a DevOps Engineer and full-stack developer. He also does music (hyperpop, rap, pop) and design. He uses Svelte, Java, Quarkus, GraphQL, Kubernetes, Helm, Hetzner, Go and Rust."
     />
-    <meta property="og:image" content="https://keyruu.de/keyruu_logo.png" />
+    <meta property="og:image" content="https://keyruu.de/keyruu_logo.webp" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
