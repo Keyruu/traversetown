@@ -50,16 +50,6 @@ const releases = (await res.json()).list;
       href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@100;200;300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <style>
-      * {
-        font-family: "Outfit", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-      }
-    </style>
-    <script
-      src="https://kit.fontawesome.com/5998eebd05.js"
-      crossorigin="anonymous"></script>
     <script
       defer
       data-domain="keyruu.de"
@@ -98,6 +88,12 @@ const releases = (await res.json()).list;
     <meta name="twitter:image" content="https://keyruu.de/keyruu_logo.webp" />
     <title>Keyruu</title>
     <style>
+      * {
+        font-family: "Outfit", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
       .different-font {
         font-family: "Montagu Slab", serif;
         font-weight: 300;
@@ -146,8 +142,6 @@ const releases = (await res.json()).list;
   <body>
     <OnPointer client:load>
       <Cursor client:load />
-      <div class="navbar bg-neutral-focus fixed top-0 h-20 z-20 opacity-0">
-      </div>
       <div class="logo-container flex justify-center items-center flex-col">
         <Logo client:load />
       </div>

@@ -55,3 +55,8 @@ data:
           nodes:
               "frontend:80": 1
           type: roundrobin
+        plugins:
+          real-ip:
+            source: http_x_forwarded_for
+          gzip:
+            types: "*"

@@ -97,6 +97,3 @@ data:
           nodes:
               "nocodb:80": 1
           type: roundrobin
-    plugins:
-      - name: proxy-rewrite
-      - name: cors

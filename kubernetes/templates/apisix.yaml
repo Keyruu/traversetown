@@ -116,3 +116,17 @@ spec:
                 name: apisix
                 port:
                   name: apisix
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: common
+  labels:
+    apisix.config: "true"
+data:
+  config: |
+    plugins:
+      - name: real-ip
+      - name: gzip
+      - name: proxy-rewrite
+      - name: cors
