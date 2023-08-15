@@ -83,6 +83,19 @@ data:
           nodes:
               "nocodb:80": 1
           type: roundrobin
+      - uri: /download/*
+        host: {{ .Values.nocodb.host }}
+        plugins:
+          cors:
+            allow_origins: "https://keyruu.de"
+          response-rewrite:
+            headers:
+              set:
+                Cache-Control: "public, max-age=31536000"
+        upstream:
+          nodes:
+              "nocodb:80": 1
+          type: roundrobin
       - uri: /api/v1/releases
         host: {{ .Values.ingress.host }}
         methods:

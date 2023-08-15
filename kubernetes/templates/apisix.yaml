@@ -130,3 +130,4 @@ data:
       - name: gzip
       - name: proxy-rewrite
       - name: cors
+      - name: response-rewrite
