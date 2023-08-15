@@ -22,9 +22,9 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Build
-        run: yarn build
+        run: pnpm run build
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -38,7 +38,7 @@ jobs:
       - name: Docker build and push
         uses: docker/build-push-action@v3
         with:
-          context: frontend/
-          file: frontend/docker/image/Dockerfile
+          context: astro-frontend/
+          file: astro-frontend/docker/image/Dockerfile
           push: true
           tags: ghcr.io/keyruu/traversetown/frontend:latest
