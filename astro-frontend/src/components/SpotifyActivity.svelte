@@ -51,7 +51,7 @@
 
 <style lang="scss">
   .activity {
-    background-image: url("/gradient/subtle-gradient2.png");
+    background-image: url("/gradient/subtle-gradient2.webp");
     background-repeat: no-repeat;
     background-size: cover;
   }
