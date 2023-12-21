@@ -25,7 +25,6 @@
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    mix-blend-mode: difference;
     pointer-events: none;
     user-select: none;
     background: #000000;

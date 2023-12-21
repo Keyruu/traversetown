@@ -11,10 +11,10 @@ spec:
       labels:
         app: backend
     spec:
-      {{- if .Values.global.imagePullSecret }}
+      # {{- if .Values.global.imagePullSecret }}
       imagePullSecrets:
         - name: "{{ .Values.global.imagePullSecret }}"
-      {{- end }}
+      # {{- end }}
       containers:
         - name: backend
           image: {{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}

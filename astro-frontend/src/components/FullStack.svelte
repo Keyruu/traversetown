@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import InfoBox from './InfoBox.svelte';
 
 	const devopsIcons = [

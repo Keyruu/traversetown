@@ -21,7 +21,7 @@ public class RefreshJob implements Job
   SpotifyClient client;
 
   @Override
-  public void execute(JobExecutionContext context) throws JobExecutionException
+  public void execute(JobExecutionContext context)
   {
     try
     {
