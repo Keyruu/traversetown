@@ -1,0 +1,15 @@
+overwrite: true
+schema: "http://localhost:8080/graphql"
+documents: "graphql/**/*.graphql"
+config:
+  withHooks: false
+  strictScalars: true
+  scalars:
+    BigDecimal: number
+    BigInteger: number
+    DateTime: string
+generates:
+  composables/generated/:
+    preset: client
+    config:
+      useTypeImports: true
