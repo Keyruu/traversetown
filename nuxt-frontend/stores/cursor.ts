@@ -1,7 +1,14 @@
 export const useCursorStore = defineStore('cursor', () => {
+    const x = ref(0)
+    const y = ref(0)
     const scale = ref(1)
     const icon = ref<string | null>()
     const color = ref<string>('#4a4a4a')
+
+    function setCoords(e: MouseEvent) {
+        x.value = e.clientX
+        y.value = e.clientY
+    }
 
     function triple() {
         scale.value = 3
@@ -27,5 +34,5 @@ export const useCursorStore = defineStore('cursor', () => {
         icon.value = 'i-mdi-spotify'
     }
 
-    return { scale, icon, color, focus, double, triple, reset, spotify }
+    return { x, y, scale, icon, color, setCoords, focus, double, triple, reset, spotify }
 })

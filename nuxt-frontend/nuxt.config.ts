@@ -8,6 +8,12 @@ export default defineNuxtConfig({
       'composables/generated/*.ts'
     ]
   },
+  css: [
+    '~/assets/css/main.css',
+  ],
+  build: {
+    transpile: ["gsap"],
+  },
   devtools: {
     enabled: true,
 
@@ -61,4 +67,14 @@ export default defineNuxtConfig({
       }
     },
   },
+  vue: {
+    compilerOptions: {
+      isCustomElement: tag => tag.startsWith('swiper-') || tag.startsWith('atropos-')
+    }
+  },
+  runtimeConfig: {
+    public: {
+      nocodbUrl: process.env.NOCODB_URL!,
+    }
+  }
 })
