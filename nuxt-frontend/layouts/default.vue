@@ -1,19 +1,27 @@
 <script setup lang="ts">
+import NavLink from "~/components/NavLink.vue";
+
 const {focus, reset} = useCursorStore()
 </script>
 
 <template>
   <div>
-    <nav class="bg-gray-800 z-50 fixed w-screen" style="visibility: hidden">
-      <div class="flex justify-center items-center flex-col">
-        <img
-            class="logo h-20 my-4 drop-shadow visible"
-            style="transform: translateY(40vh) scale(2)"
-            src="/keyruu_logo.png"
-            alt="Keyruu"
-            @mouseenter="() => focus(2)"
-            @mouseleave="reset"
-        />
+    <nav class="bg-[#121212] z-50 fixed w-screen" style="visibility: hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-1 gap-1">
+        <NavLink class="hidden lg:flex" text="likes" direction="left"/>
+        <NavLink class="hidden lg:flex" text="music" direction="left"/>
+        <div class="flex justify-center items-center">
+          <img
+              class="logo h-20 my-4 drop-shadow visible"
+              style="transform: translateY(40vh) scale(2)"
+              src="/keyruu_logo.png"
+              alt="Keyruu"
+              @mouseenter="() => focus(2)"
+              @mouseleave="reset"
+          />
+        </div>
+        <NavLink class="hidden lg:flex" text="listens" direction="right"/>
+        <NavLink class="hidden lg:flex" text="about" direction="right"/>
       </div>
     </nav>
     <slot/>

@@ -45,7 +45,7 @@ function extractImageURL(cover: any) {
         </swiper-container>
       </div>
       <div
-          :style="`background: ${$props.releases[slideIndex].primary_color}`"
+          :style="`background: ${releases[slideIndex].primary_color}`"
           class="h-full px-4 overflow-hidden text-center relative py-0.5"
       >
         <h1 class="title-font sm:text-4xl text-3xl font-medium text-gray-900">

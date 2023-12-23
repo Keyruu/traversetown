@@ -18,7 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 const { setCoords } = useCursorStore()
 </script>
 <template>
-  <div ref="el" class="cursor-none" @pointermove="setCoords">
+  <div ref="el" class="cursor-none overflow-x-hidden" @pointermove="setCoords">
     <Cursor/>
     <NuxtLayout>
       <NuxtPage/>

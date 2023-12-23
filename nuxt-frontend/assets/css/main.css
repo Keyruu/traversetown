@@ -8,6 +8,20 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Zodiak';
+    src: url('../fonts/Zodiak-Variable.woff2') format('woff2'),
+    url('../fonts/Zodiak-Variable.woff') format('woff'),
+    url('../fonts/Zodiak-Variable.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+}
+
 * {
     font-family: 'ClashDisplay', sans-serif;
+}
+
+.different-font {
+    font-family: 'Zodiak', sans-serif;
 }
