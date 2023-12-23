@@ -103,13 +103,39 @@ const backendIcons = [
         "I like Rust. I'm still a beginner though. I have done a few experiments with it and I'm looking forward to using it more in the future. Especially for web stuff (Leptos)."
   }
 ];
+
+const selected = ref('devops');
 </script>
 
-<template>
-  <div class="fullstack w-screen flex justify-center items-center py-36">
-    <InfoBox :icons="devopsIcons" text="DevOps"/>
+<template class="flex flex-col justify-center">
+  <div>
+  <div class="flex flex-row justify-center">
+    <h1
+      :class="`m-4 lg:m-6 font-bold text-sm lg:text-xl p-2 lg:p-4 border-[1px] hover:bg-white hover:text-black cursor-pointer
+      ${selected === 'devops' ? 'bg-white text-black' : ''}
+      `"
+      @click="selected = 'devops'"
+    >DEVOPS</h1>
+    <h1
+      :class="`m-4 lg:m-6 font-bold text-sm lg:text-xl p-2 lg:p-4 border-[1px] hover:bg-white hover:text-black cursor-pointer
+      ${selected === 'frontend' ? 'bg-white text-black' : ''}
+      `"
+      @click="selected = 'frontend'"
+    >FRONTEND</h1>
+    <h1
+      :class="`m-4 lg:m-6 font-bold text-sm lg:text-xl p-2 lg:p-4 border-[1px] hover:bg-white hover:text-black cursor-pointer
+      ${selected === 'backend' ? 'bg-white text-black' : ''}
+      `"
+      @click="selected = 'backend'"
+    >BACKEND</h1>
+  </div>
+  <div class="fullstack w-screen flex justify-center items-center py-14 h-[66vh]">
+    <InfoBox v-if="selected === 'devops'" :icons="devopsIcons"/>
+    <InfoBox v-if="selected === 'frontend'" :icons="frontendIcons"/>
+    <InfoBox v-if="selected === 'backend'" :icons="backendIcons"/>
     <!--  <InfoBox :icons="frontendIcons" text="Frontend"/>-->
     <!--  <InfoBox :icons="backendIcons" text="Backend"/>-->
+  </div>
   </div>
 </template>
 

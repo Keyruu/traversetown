@@ -18,12 +18,12 @@ onMounted(() => {
     const nav = self.selector!('nav')
     const foggySea = self.selector!('.foggy-sea')
 
-    const scrollTrigger =  {
-          trigger: foggySea,
-          start: 'top bottom',
-          end: 'bottom bottom',
-          scrub: true,
-        };
+    const scrollTrigger = {
+      trigger: foggySea,
+      start: 'top bottom',
+      end: 'bottom bottom',
+      scrub: true,
+    };
 
     gsap.to(logo, {
       y: 0,
@@ -51,29 +51,29 @@ onUnmounted(() => {
     <div class="logo-container flex justify-center items-center flex-col">
       <UIcon name="i-mdi-arrow-down" class="h-10 w-10 sticky text-white mt-auto mb-8"/>
     </div>
-    <ILike />
-    <div class="fullstack">
+    <ILike/>
+    <div class="fullstack mb-20">
       <section
           id="devops"
-          class="h-[1000px] sm:mb-0 mb-20 flex sm:flex-row flex-col justify-center items-center text-center w-full"
+          class="flex sm:flex-row flex-col justify-center items-center text-center w-full"
       >
+        <FullStack/>
+      </section>
 
-        <FullStack />
-      </section>
-      <section id="keyruu" class="mb-20 flex flex-col items-center">
-        <div class="md:text-6xl text-4xl z-10 flex">
-          <p
-              class="font-semibold hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-600 hover:bg-clip-text hover:text-transparent"
-          >
-            my&nbsp;
-          </p>
-          <p class="font-extralight">music:</p>
-        </div>
-        <Releases :releases="releases"/>
-      </section>
     </div>
+    <section id="music" class="mb-20 flex flex-col items-center">
+      <div class="md:text-6xl text-4xl z-10 flex mb-10">
+        <p
+            class="font-semibold hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-600 hover:bg-clip-text hover:text-transparent"
+        >
+          my&nbsp;
+        </p>
+        <p class="font-extralight">music:</p>
+      </div>
+      <Releases :releases="releases"/>
+    </section>
     <section id="haveilistenedto" class="bg-neutral mb-24">
-      <!--        <HaveIListenedTo client:visible />-->
+      <HaveIListenedTo/>
     </section>
     <!--      <SpotifyActivity client:visible />-->
   </main>
@@ -98,7 +98,6 @@ onUnmounted(() => {
   font-family: "Montagu Slab", serif;
   font-weight: 300;
 }
-
 
 
 .placeholder {
