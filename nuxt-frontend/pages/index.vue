@@ -3,12 +3,12 @@ import gsap from "gsap";
 import ILike from "~/components/ILike.vue";
 
 let {focus, reset, spotify} = useCursorStore()
+const img = useImage()
+const mainGradient = img('/gradient/main-gradient.png',
+    {width: 2880, height: 1280})
 
-const res = await fetch("https://keyruu.de/api/v1/releases");
 
-const releases = (await res.json()).list;
-
-let ctx;
+let ctx: gsap.Context;
 
 onMounted(() => {
   ctx = gsap.context((self) => {
@@ -40,13 +40,16 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  ctx!.revert(); // <- Easy Cleanup!
+  if (ctx) ctx.revert(); // <- Easy Cleanup!
 });
 </script>
 
 <template>
   <main>
-    <div class="logo-container flex justify-center items-center flex-col">
+    <div
+        :class="`w-full h-screen bg-no-repeat bg-cover
+        flex justify-center items-center flex-col`"
+        :style="`background-image: url('${mainGradient}')`">
       <UIcon name="i-mdi-arrow-down" class="h-10 w-10 sticky text-white mt-auto mb-8"/>
     </div>
     <ILike/>
@@ -57,51 +60,18 @@ onUnmounted(() => {
       >
         <FullStack/>
       </section>
-
     </div>
     <section id="music" class="mb-20 flex flex-col items-center">
-      <div class="md:text-6xl text-4xl z-10 flex mb-10">
-        <p
-            class="font-semibold hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-600 hover:bg-clip-text hover:text-transparent"
-        >
-          my&nbsp;
-        </p>
-        <p class="font-extralight">music:</p>
-      </div>
-      <Releases :releases="releases"/>
+      <MyMusic/>
     </section>
     <section id="haveilistenedto" class="bg-neutral">
       <HaveIListenedTo/>
     </section>
-          <SpotifyActivity />
+    <section id="spotify-activity">
+      <SpotifyActivity/>
+    </section>
   </main>
 </template>
 
-<style>
-.logo-container {
-  background-image: url("/gradient/main-gradient.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 100vh;
-}
-
-@media (min-width: 640px) {
-  .logo-container {
-    background-image: url("/gradient/main-gradient.png");
-  }
-}
-
-.different-font {
-  font-family: "Montagu Slab", serif;
-  font-weight: 300;
-}
-
-
-.placeholder {
-  width: 100%;
-  height: 120vh;
-}
-
-
+<style scoped>
 </style>

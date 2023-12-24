@@ -3,13 +3,14 @@
 
 defineProps<{
   text: string,
-  direction: string
+  direction: string,
+  to: string,
 }>()
 </script>
 
 <template>
   <div class="flex justify-center items-center">
-    <a :class="`hvr-underline-from-${direction}`">{{text}}</a>
+    <NuxtLink :to="to" :class="`cursor-pointer hvr-underline-from-${direction}`">{{text}}</NuxtLink>
   </div>
 </template>
 

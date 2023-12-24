@@ -7,13 +7,17 @@
       },
       link: String,
       highlightColor: String,
+      doFocus: {
+        type: Boolean,
+        default: true,
+      },
       width: {
         type: Number,
-        default: 20,
+        default: 6,
       },
       height: {
         type: Number,
-        default: 20,
+        default: 6,
       },
       margin: {
         type: String,
@@ -33,11 +37,11 @@
 <a
   @mouseenter="() => {
     currentColor = highlightColor;
-    focus(2);
+    if (doFocus) focus(2);
   }"
   @mouseleave="() => {
     currentColor = iconColor;
-    reset();
+    if (doFocus) reset();
   }"
   :class="`${margin} transition duration-500 hover:scale-110 ${extraClasses}`"
   :style="`color: ${currentColor}`"

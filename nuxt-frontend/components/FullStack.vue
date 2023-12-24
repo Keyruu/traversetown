@@ -104,6 +104,10 @@ const backendIcons = [
   }
 ];
 
+const img = useImage()
+const backgroundImg = img('/gradient/subtle-gradient.png',
+    {width: 2880, height: 1280})
+
 const selected = ref('devops');
 </script>
 
@@ -129,19 +133,17 @@ const selected = ref('devops');
       @click="selected = 'backend'"
     >BACKEND</h1>
   </div>
-  <div class="fullstack w-screen flex justify-center items-center py-14 h-[66vh]">
+  <div class="fullstack w-screen flex justify-center items-center py-14 h-[66vh]"
+  :style="`background-image: url('${backgroundImg}')`">
     <InfoBox v-if="selected === 'devops'" :icons="devopsIcons"/>
     <InfoBox v-if="selected === 'frontend'" :icons="frontendIcons"/>
     <InfoBox v-if="selected === 'backend'" :icons="backendIcons"/>
-    <!--  <InfoBox :icons="frontendIcons" text="Frontend"/>-->
-    <!--  <InfoBox :icons="backendIcons" text="Backend"/>-->
   </div>
   </div>
 </template>
 
 <style scoped>
 .fullstack {
-  background-image: url("/gradient/subtle-gradient.png");
   background-repeat: no-repeat;
   background-size: cover;
 }

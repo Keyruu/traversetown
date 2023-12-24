@@ -46,6 +46,7 @@ async function submit(e: Event) {
       } else if (errors || error) {
         loading.value = false
         console.log(errors);
+        playcountValue.value = null;
         comment.value = "Yeah...";
       }
     })
@@ -53,6 +54,7 @@ async function submit(e: Event) {
     playcount.onError((err) => {
       loading.value = false
       console.log(err);
+      playcountValue.value = null;
       comment.value = "Yeah...";
     })
   }
@@ -60,7 +62,7 @@ async function submit(e: Event) {
 </script>
 
 <template>
-  <div class="flex justify-center items-center flex-col bg-gray-800">
+  <div class="flex justify-center items-center flex-col bg-gray-900">
     <h1 class="text-3xl m-8">
       Type in an artist and see if I have listened to them:
     </h1>

@@ -22,6 +22,10 @@ const likes2 = [
   {name: "Frontend"},
 ];
 
+const img = useImage()
+const foggySeaBg = img('/foggy_sea.jpg',
+    {width: 3008, height: 700})
+
 let ctx: Context;
 
 onMounted(() => {
@@ -40,7 +44,7 @@ onMounted(() => {
       xPercent: -100,
       scrollTrigger: {
         ...scrollTrigger,
-        onUpdate({ getVelocity }) {
+        onUpdate({getVelocity}) {
           gsap.fromTo(rightToLeft, {
             skewX: `${getVelocity() / -200}deg`
           }, {
@@ -55,7 +59,7 @@ onMounted(() => {
       xPercent: 100,
       scrollTrigger: {
         ...scrollTrigger,
-        onUpdate({ getVelocity }) {
+        onUpdate({getVelocity}) {
           gsap.fromTo(leftToRight, {
             skewX: `${getVelocity() / 200}deg`
           }, {
@@ -73,7 +77,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="foggy-sea w-full mb-24 flex flex-col justify-center">
+  <div :class="`foggy-sea h-[600px] bg-no-repeat bg-auto w-full mb-24 flex flex-col justify-center`"
+       :style="`background-image: url('${foggySeaBg}')`">
     <p
         class="mix-blend-difference lg:text-8xl md:text-6xl mb-8 font-thin w-full text-center text-4xl"
     >
@@ -93,10 +98,4 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.foggy-sea {
-  background-image: url("/foggy_sea.jpg");
-  background-repeat: no-repeat;
-  background-size: auto;
-  height: 600px;
-}
 </style>

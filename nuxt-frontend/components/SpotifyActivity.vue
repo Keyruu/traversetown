@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const img = useImage()
+const backgroundImg = img('/gradient/subtle-gradient2.png',
+    {width: 2880, height: 1280})
+
 let {result} = useSubscription(SubscribeSpotifyTrackDocument)
 
 let spotifyWeight = ref(400)
@@ -7,8 +11,9 @@ let spotifyWeight = ref(400)
 <template>
   <section
       id="music"
-      class="lg:h-[1000px] md:h-[800px] sm:h-[600px] sm:mb-0 pt-24 mb-20 h-[600px] flex
-  items-center flex-col now-playing-layout activity"
+      :class="`py-24 flex bg-[url('${backgroundImg}')] bg-no-repeat bg-cover
+      items-center flex-col`"
+      :style="`background-image: url('${backgroundImg}')`"
   >
     <div class="md:text-6xl text-4xl z-10 sm:mb-24 mb-16 flex">
       <p class="font-extralight">my&nbsp;</p>
@@ -31,14 +36,8 @@ let spotifyWeight = ref(400)
   </section>
 </template>
 
-<style>
+<style scoped>
 .spotify {
   transition: all 0.2s ease-in-out;
-}
-
-.activity {
-  background-image: url("/gradient/subtle-gradient2.png");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 </style>
