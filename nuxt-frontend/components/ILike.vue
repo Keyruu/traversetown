@@ -77,7 +77,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div :class="`foggy-sea h-[600px] bg-no-repeat bg-auto w-full mb-24 flex flex-col justify-center`"
+  <div :class="`foggy-sea h-[600px] bg-no-repeat bg-cover w-full mb-24 flex flex-col justify-center`"
        :style="`background-image: url('${foggySeaBg}')`">
     <p
         class="mix-blend-difference lg:text-8xl md:text-6xl mb-8 font-thin w-full text-center text-4xl"
