@@ -2,8 +2,6 @@
 import gsap from "gsap";
 import ILike from "~/components/ILike.vue";
 
-let {result} = useSubscription(SubscribeSpotifyTrackDocument)
-
 let {focus, reset, spotify} = useCursorStore()
 
 const res = await fetch("https://keyruu.de/api/v1/releases");
@@ -72,10 +70,10 @@ onUnmounted(() => {
       </div>
       <Releases :releases="releases"/>
     </section>
-    <section id="haveilistenedto" class="bg-neutral mb-24">
+    <section id="haveilistenedto" class="bg-neutral">
       <HaveIListenedTo/>
     </section>
-    <!--      <SpotifyActivity client:visible />-->
+          <SpotifyActivity />
   </main>
 </template>
 

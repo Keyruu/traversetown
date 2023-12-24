@@ -32,6 +32,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@vueuse/motion": "^2.0.0",
     "atropos": "^2.0.2",
+    "colorthief": "^2.4.0",
     "gsap": "^3.12.4",
     "pinia": "^2.1.7",
     "swiper": "^11.0.5"
