@@ -36,11 +36,11 @@ onMounted(() => {
         start: 'top +=200',
       }
     });
-  }, 'body'); // <- Scope!
+  }, '.layout'); // <- Scope!
 });
 
 onUnmounted(() => {
-  if (ctx) ctx.revert(); // <- Easy Cleanup!
+  ctx.revert(); // <- Easy Cleanup!
 });
 </script>
 

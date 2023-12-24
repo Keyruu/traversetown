@@ -6,11 +6,15 @@ defineProps<{
   direction: string,
   to: string,
 }>()
+
+const route = useRoute()
 </script>
 
 <template>
   <div class="flex justify-center items-center">
-    <NuxtLink :to="to" :class="`cursor-pointer hvr-underline-from-${direction}`">{{text}}</NuxtLink>
+    <NuxtLink :to="to" :class="`cursor-pointer ${route.path.includes(to) ? 'before:right-0' : 'before:right-full'} hvr-underline-from-${direction}`">
+      {{text}}
+    </NuxtLink>
   </div>
 </template>
 
@@ -30,7 +34,6 @@ defineProps<{
   position: absolute;
   z-index: -1;
   left: 0;
-  right: 100%;
   bottom: 0;
   background: #4ca7f0;
   height: 4px;

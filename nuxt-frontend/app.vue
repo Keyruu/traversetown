@@ -11,7 +11,7 @@ const { setCoords } = useCursorStore()
 <template>
   <div ref="el" class="cursor-none overflow-x-hidden" @pointermove="setCoords">
     <Cursor/>
-    <NuxtLayout>
+    <NuxtLayout class="layout">
       <NuxtPage/>
     </NuxtLayout>
   </div>
