@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const {focus, reset} = useCursorStore()
 
+const slideoverOpen = ref(false)
+
 const seoTitle = 'Keyruu'
 const seoDesc = 'Personal website of Keyruu aka Lucas. Keyruu is a DevOps Engineer and full-stack developer. ' +
     'He also does music (hyperpop, rap, pop) and design. ' +
@@ -43,10 +45,26 @@ useHead({
 
 <template>
   <div>
+    <USlideover v-model="slideoverOpen" side="left">
+      <div class="flex-1 p-10 text-2xl flex justify-center flex-col">
+        <UButton icon="i-mdi-close" @click="slideoverOpen = false" class="mb-6 absolute top-2 right-2" />
+        <NavLink @click="slideoverOpen = false" to="/" class="mb-6" text="home" direction="left"/>
+        <NavLink @click="slideoverOpen = false" to="/likes" class="mb-6" text="likes" direction="left"/>
+        <NavLink @click="slideoverOpen = false" to="/music/newest-song" class="mb-6" text="music" direction="left"/>
+        <NavLink @click="slideoverOpen = false" to="/listens" class="mb-6" text="listens" direction="left"/>
+        <NavLink @click="slideoverOpen = false" to="/about" class="" text="about" direction="left"/>
+      </div>
+    </USlideover>
     <nav class="bg-[#121212] z-50 fixed w-screen">
-      <div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-1 gap-1">
-          <NavLink to="/likes" class="hidden lg:flex" text="likes" direction="left"/>
-          <NavLink to="/music/newest-song" class="hidden lg:flex" text="music" direction="left"/>
+      <div class="grid grid-cols-3 lg:grid-cols-5 grid-rows-1 gap-1">
+        <div class="flex justify-center items-center lg:hidden">
+          <UButton
+              class="h-8 w-8"
+              icon="i-mdi-menu"
+              @click="slideoverOpen = true" />
+        </div>
+        <NavLink to="/likes" class="hidden lg:flex" text="likes" direction="left"/>
+        <NavLink to="/music/newest-song" class="hidden lg:flex" text="music" direction="left"/>
         <div class="flex justify-center items-center">
           <NuxtLink to="/">
             <NuxtImg
@@ -61,8 +79,8 @@ useHead({
             />
           </NuxtLink>
         </div>
-          <NavLink to="/listens" class="hidden lg:flex" text="listens" direction="right"/>
-          <NavLink to="/about" class="hidden lg:flex" text="about" direction="right"/>
+        <NavLink to="/listens" class="hidden lg:flex" text="listens" direction="right"/>
+        <NavLink to="/about" class="hidden lg:flex" text="about" direction="right"/>
       </div>
     </nav>
     <slot/>
