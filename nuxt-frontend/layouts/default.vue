@@ -1,30 +1,30 @@
 <script setup lang="ts">
 const {focus, reset} = useCursorStore()
-const route = useRoute()
-const logoStyle = ref("")
-const navStyle = ref("")
 
-watch(() => route.path, (value, oldValue) => {
-  console.log(value)
-  if (value === '/' && oldValue) {
-    navStyle.value = "visibility: hidden";
-    logoStyle.value = "transform: translateY(40vh) scale(2);";
-  } else {
-    navStyle.value = "";
-    logoStyle.value = "";
-  }
-}, {immediate: true})
+const navStyle = ref('')
+const logoStyle = ref('')
+
+function index() {
+  navStyle.value = "visibility: hidden";
+  logoStyle.value = "transform: translateY(40vh) scale(2);";
+}
+
+function resetStyles() {
+  navStyle.value = "";
+  logoStyle.value = "";
+}
 </script>
 
 <template>
   <div>
     <nav class="bg-[#121212] z-50 fixed w-screen" :style="navStyle">
       <div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-1 gap-1">
-        <NavLink to="likes" class="hidden lg:flex" text="likes" direction="left"/>
-        <NavLink to="music" class="hidden lg:flex" text="music" direction="left"/>
+        <NavLink @click="resetStyles" to="likes" class="hidden lg:flex" text="likes" direction="left"/>
+        <NavLink @click="resetStyles" to="music" class="hidden lg:flex" text="music" direction="left"/>
         <div class="flex justify-center items-center">
           <NuxtLink to="/">
             <NuxtImg
+                @click="index"
                 class="logo w-44 my-4 drop-shadow visible"
                 :style="logoStyle"
                 width="500"
@@ -37,8 +37,8 @@ watch(() => route.path, (value, oldValue) => {
             />
           </NuxtLink>
         </div>
-        <NavLink to="listens" class="hidden lg:flex" text="listens" direction="right"/>
-        <NavLink to="about" class="hidden lg:flex" text="about" direction="right"/>
+        <NavLink @click="resetStyles" to="listens" class="hidden lg:flex" text="listens" direction="right"/>
+        <NavLink @click="resetStyles" to="about" class="hidden lg:flex" text="about" direction="right"/>
       </div>
     </nav>
     <slot/>
