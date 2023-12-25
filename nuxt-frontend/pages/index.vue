@@ -7,7 +7,6 @@ const img = useImage()
 const mainGradient = img('/gradient/main-gradient.png',
     {width: 2880, height: 1280})
 
-
 let ctx: gsap.Context;
 
 onMounted(() => {

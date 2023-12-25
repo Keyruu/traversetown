@@ -4,15 +4,16 @@ const route = useRoute()
 const logoStyle = ref("")
 const navStyle = ref("")
 
-watch(route, value => {
-  if (value.path === '/') {
+watch(() => route.path, value => {
+  console.log(value)
+  if (value === '/') {
     navStyle.value = "visibility: hidden";
     logoStyle.value = "transform: translateY(40vh) scale(2);";
   } else {
     navStyle.value = "";
     logoStyle.value = "";
   }
-}, {deep: true, immediate: true})
+}, {immediate: true})
 </script>
 
 <template>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 const props = defineProps<{
   icons: {
-    src: string;
-    alt: string;
-    description: string;
+    src: string,
+    alt: string,
+    description: string,
+    link: string,
   }[]
 }>();
 
@@ -27,16 +28,18 @@ const {focus, reset} = useCursorStore()
       >
         <div class="sm:tooltip" data-tip={icon.description}>
           <div class="flex justify-center items-center bg-[#121212] p-6 w1/3 my-4">
-            <NuxtImg
-                :src="icon.src"
-                :alt="icon.alt"
-                @mouseenter="() => focus(2)"
-                @mouseleave="reset"
-                height="60"
-                :placeholder="[60, 60]"
-                class="object-contain h-[60px]"
-                format="webp"
-            />
+            <a :href="icon.link" target="_blank">
+              <NuxtImg
+                  :src="icon.src"
+                  :alt="icon.alt"
+                  @mouseenter="() => focus(2)"
+                  @mouseleave="reset"
+                  height="60"
+                  :placeholder="[60, 60]"
+                  class="object-contain h-[60px]"
+                  format="webp"
+              />
+            </a>
           </div>
           <p class="mix-blend-difference hidden lg:flex">{{ icon.description }}</p>
         </div>

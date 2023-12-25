@@ -27,7 +27,7 @@ let spotifyWeight = ref(400)
       </p>
       <p class="font-extralight">activity:</p>
     </div>
-    <p v-if="result?.subSpotifyTrack?.trackName == null">
+    <p class="h-[500px]" v-if="result?.subSpotifyTrack?.trackName == null">
       Waiting for song...
     </p>
     <div v-else>
