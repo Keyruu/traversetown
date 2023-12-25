@@ -13,7 +13,8 @@ const selectedStyle = computed(() => {
   let oppositeDirection = props.direction === 'left' ? 'right' : 'left'
   let startOfPath = 'wtf'
   let split = props.to.split('/')
-  if (split.length >= 2) startOfPath = startOfPath[1]
+  if (split.length >= 2) startOfPath = split[1]
+
   if (route.path.includes(startOfPath)) {
     return `before:${oppositeDirection}-0`
   } else {
