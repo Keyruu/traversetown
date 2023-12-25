@@ -1,17 +1,18 @@
 <script setup lang="ts">
 const {focus, reset} = useCursorStore()
 const route = useRoute()
-const logoStyle = computed(() => {
-  if (route.path === '/') {
-    return "transform: translateY(40vh) scale(2);";
-  }
-})
+const logoStyle = ref("")
+const navStyle = ref("")
 
-const navStyle = computed(() => {
-  if (route.path === '/') {
-    return "visibility: hidden";
+watch(route, value => {
+  if (value.path === '/') {
+    navStyle.value = "visibility: hidden";
+    logoStyle.value = "transform: translateY(40vh) scale(2);";
+  } else {
+    navStyle.value = "";
+    logoStyle.value = "";
   }
-})
+}, {deep: true, immediate: true})
 </script>
 
 <template>
