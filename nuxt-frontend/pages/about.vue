@@ -1,4 +1,20 @@
 <script setup lang="ts">
+const seoTitle = 'Keyruu is about this'
+const seoDesc = 'Keyruu is a full stack developer / devops engineer and musician from Germany. ' +
+    'He also loves design and smart home. Find out more about him here and how to reach him.';
+const seoImage = '/ogImages/index.png';
+
+useSeoMeta({
+  title: seoTitle,
+  description: seoDesc,
+  ogTitle: seoTitle,
+  ogDescription: seoDesc,
+  ogImage: seoImage,
+  ogUrl: 'https://keyruu.de/about',
+  twitterTitle: seoTitle,
+  twitterDescription: seoDesc,
+  twitterImage: seoImage,
+});
 </script>
 
 <template>

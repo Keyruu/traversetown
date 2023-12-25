@@ -23,7 +23,6 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/ui',
-    '@nuxtjs/i18n',
     '@nuxt/image',
     'nuxt-simple-sitemap',
     'nuxt-simple-robots',
@@ -35,30 +34,6 @@ export default defineNuxtConfig({
   ui: {
     icons: ["mdi", "simple-icons"]
   },
-  i18n: {
-    locales: [
-      {
-        code: 'de',
-        iso: 'de-DE',
-        name: 'German',
-        file: 'de.js'
-      },
-      {
-        code: 'en',
-        iso: 'en-US',
-        name: 'English',
-        file: 'en.js',
-      }
-    ],
-    defaultLocale: 'en',
-    langDir: 'lang/',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root',  // recommended
-      alwaysRedirect: true
-    }
-  },
   apollo: {
     clients: {
       default: {
@@ -69,7 +44,7 @@ export default defineNuxtConfig({
   },
   vue: {
     compilerOptions: {
-      isCustomElement: tag => tag.startsWith('swiper-') || tag.startsWith('atropos-')
+      isCustomElement: tag => tag.startsWith('swiper-')
     }
   },
   runtimeConfig: {

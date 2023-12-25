@@ -41,7 +41,6 @@ onMounted(() => {
       }
     });
   }, 'body'); // <- Scope!
-
 });
 
 onUnmounted(() => {

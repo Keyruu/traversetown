@@ -1,18 +1,27 @@
 <link rel="stylesheet" href="../../../../../Downloads/Zodiak_Complete/Fonts/WEB/css/zodiak.css">
 <script setup lang="ts">
 
-defineProps<{
+const props = defineProps<{
   text: string,
   direction: string,
   to: string,
 }>()
 
 const route = useRoute()
+
+const selectedStyle = computed(() => {
+  let oppositeDirection = props.direction === 'left' ? 'right' : 'left'
+  if (route.path.includes(props.to)) {
+    return `before:${oppositeDirection}-0`
+  } else {
+    return `before:${oppositeDirection}-full`
+  }
+})
 </script>
 
 <template>
   <div class="flex justify-center items-center">
-    <NuxtLink :to="to" :class="`cursor-pointer ${route.path.includes(to) ? 'before:right-0' : 'before:right-full'} hvr-underline-from-${direction}`">
+    <NuxtLink :to="to" :class="`cursor-pointer ${selectedStyle} hvr-underline-from-${direction}`">
       {{text}}
     </NuxtLink>
   </div>
@@ -62,8 +71,8 @@ const route = useRoute()
   content: "";
   position: absolute;
   z-index: -1;
-  left: 100%;
   right: 0;
+
   bottom: 0;
   background: #4ca7f0;
   height: 4px;

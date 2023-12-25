@@ -25,6 +25,29 @@ const initialSlide = computed(() => {
   return 0
 })
 
+const route = useRoute()
+const config = useRuntimeConfig()
+
+if (route.path.startsWith('/music')) {
+  const currentSong = data.value?.list[initialSlide.value];
+  const seoTitle = () => `Keyruu - ${currentSong?.songtitle}`;
+  const seoDesc = () => `Check out ${currentSong?.songtitle}! ` +
+    `Made by ${currentSong?.artists}. Find apple music, spotify and youtube links here.`;
+  const seoImage = () => `${config.public.nocodbUrl}/${currentSong?.cover[0].path}`;
+
+  useSeoMeta({
+    ogType: 'music.song',
+    title: seoTitle,
+    ogTitle: seoTitle,
+    twitterTitle: seoTitle,
+    description: seoDesc,
+    ogDescription: seoDesc,
+    twitterDescription: seoDesc,
+    ogImage: seoImage,
+    twitterImage: seoImage,
+    ogUrl: () => `https://keyruu.de/music/${currentSong?.songtitle.replace(/ /g,'')}`,
+  })
+}
 </script>
 
 <template>

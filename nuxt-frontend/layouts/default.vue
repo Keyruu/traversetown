@@ -1,5 +1,37 @@
 <script setup lang="ts">
 const {focus, reset} = useCursorStore()
+
+const seoTitle = 'Keyruu'
+const seoDesc = 'Personal website of Keyruu aka Lucas. Keyruu is a DevOps Engineer and full-stack developer. ' +
+    'He also does music (hyperpop, rap, pop) and design. ' +
+    'He uses Svelte, Vue, Java, Quarkus, GraphQL, Kubernetes, Helm, Hetzner, Go and Rust.'
+const seoImage = '/ogImages/index.png';
+
+useSeoMeta({
+  title: seoTitle,
+  description: seoDesc,
+  ogTitle: seoTitle,
+  ogDescription: seoDesc,
+  ogImage: seoImage,
+  ogUrl: 'https://keyruu.de',
+  twitterTitle: seoTitle,
+  twitterDescription: seoDesc,
+  twitterImage: seoImage,
+  twitterCard: 'summary'
+});
+
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon32x32.png'
+    }
+  ]
+})
 </script>
 
 <template>

@@ -1,17 +1,11 @@
 <script setup lang="ts">
 const route = useRoute()
-const {reset} = useNavStore()
 
 const trimmedSong = computed(() => {
   if (route.params.song) {
-    console.log(route.params.song)
     return (route.params.song as string).replace(/ /g,'')
   }
   return 'fuckyou'
-})
-
-onMounted(() => {
-  reset()
 })
 </script>
 
