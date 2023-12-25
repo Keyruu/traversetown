@@ -2,7 +2,8 @@
 import gsap from "gsap";
 import ILike from "~/components/ILike.vue";
 
-let {focus, reset, spotify} = useCursorStore()
+const {focus, reset, spotify} = useCursorStore()
+const {index} = useNavStore()
 const img = useImage()
 const mainGradient = img('/gradient/main-gradient.png',
     {width: 2880, height: 1280})

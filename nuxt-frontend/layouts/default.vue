@@ -1,30 +1,27 @@
 <script setup lang="ts">
 const {focus, reset} = useCursorStore()
+const route = useRoute()
 
-const navStyle = ref('')
-const logoStyle = ref('')
+const nav = useNavStore()
+const {navStyle, logoStyle} = storeToRefs(nav)
 
-function index() {
-  navStyle.value = "visibility: hidden";
-  logoStyle.value = "transform: translateY(40vh) scale(2);";
-}
-
-function resetStyles() {
-  navStyle.value = "";
-  logoStyle.value = "";
-}
+watch(() => route.path, (value) => {
+  if (value === '/') {
+    nav.index()
+  }
+})
 </script>
 
 <template>
   <div>
     <nav class="bg-[#121212] z-50 fixed w-screen" :style="navStyle">
       <div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-1 gap-1">
-        <NavLink @click="resetStyles" to="likes" class="hidden lg:flex" text="likes" direction="left"/>
-        <NavLink @click="resetStyles" to="music" class="hidden lg:flex" text="music" direction="left"/>
+        <NavLink @click="nav.reset" to="likes" class="hidden lg:flex" text="likes" direction="left"/>
+        <NavLink @click="nav.reset" to="music" class="hidden lg:flex" text="music" direction="left"/>
         <div class="flex justify-center items-center">
           <NuxtLink to="/">
             <NuxtImg
-                @click="index"
+                @click="nav.index"
                 class="logo w-44 my-4 drop-shadow visible"
                 :style="logoStyle"
                 width="500"
@@ -37,8 +34,8 @@ function resetStyles() {
             />
           </NuxtLink>
         </div>
-        <NavLink @click="resetStyles" to="listens" class="hidden lg:flex" text="listens" direction="right"/>
-        <NavLink @click="resetStyles" to="about" class="hidden lg:flex" text="about" direction="right"/>
+        <NavLink @click="nav.reset" to="listens" class="hidden lg:flex" text="listens" direction="right"/>
+        <NavLink @click="nav.reset" to="about" class="hidden lg:flex" text="about" direction="right"/>
       </div>
     </nav>
     <slot/>
@@ -47,10 +44,7 @@ function resetStyles() {
         <div
             class="mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row items-center"
         >
-          <div
-              class="tooltip"
-              data-tip="This site does not need an Imprint, because it is a purely personal site without any commercial purpose."
-          >
+          <div>
             <p class="text-gray-500 text-sm text-center sm:text-left">
               © 2023 Keyruu
             </p>
