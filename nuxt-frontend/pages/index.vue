@@ -23,13 +23,18 @@ onMounted(() => {
       scrub: true,
     };
 
-    gsap.to(logo, {
+    gsap.fromTo(logo, {
+      y: '40vh',
+      scale: 2,
+    },{
       y: 0,
       scale: 1,
       scrollTrigger
     });
 
-    gsap.to(nav, {
+    gsap.fromTo(nav, {
+      visibility: 'hidden',
+    },{
       visibility: 'visible',
       scrollTrigger: {
         ...scrollTrigger,
@@ -40,7 +45,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  ctx.revert(); // <- Easy Cleanup!
+  if (ctx) ctx.revert(); // <- Easy Cleanup!
 });
 </script>
 
