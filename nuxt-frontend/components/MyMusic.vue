@@ -61,7 +61,9 @@ if (route.path.startsWith('/music')) {
     </p>
     <p class="font-extralight">music:</p>
   </div>
-  <Releases :releases="data.list" :initialSlide="initialSlide"/>
+  <div v-if="!error && data">
+    <Releases :releases="data.list" :initialSlide="initialSlide"/>
+  </div>
 </template>
 
 <style scoped>
