@@ -1,18 +1,31 @@
 <script setup lang="ts">
-let slideIndex = ref(0);
+import type {Release} from "~/composables/nocodb-types";
 
-defineProps<{
-  releases: any[]
-}>()
+const props = defineProps({
+  releases: {
+    type: Array as () => Release[],
+    required: true,
+  },
+  initialSlide: {
+    type: Number,
+    default: 0,
+  },
+})
+
+let slideIndex = ref(props.initialSlide);
 
 const config = useRuntimeConfig()
+const route = useRoute()
 
 function onSlideChange(event: CustomEvent) {
   slideIndex.value = event.detail[0].activeIndex;
+  if(route.path.startsWith('/music/')) {
+    history.pushState({},'', `/music/${props.releases[slideIndex.value].songtitle.replace(/ /g,'')}`)
+  }
 }
 
 function extractImageURL(cover: any) {
-  return `https://nocodb.keyruu.de/${cover[0].path}`;
+  return `${config.public.nocodbUrl}/${cover[0].path}`;
 }
 </script>
 
@@ -26,6 +39,7 @@ function extractImageURL(cover: any) {
             effect="coverflow"
             centered-slides=true
             slides-per-view="auto"
+            :initial-slide="initialSlide"
             :coverflow-effect="`{
             rotate: 50,
             stretch: 0,

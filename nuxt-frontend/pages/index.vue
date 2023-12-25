@@ -3,7 +3,8 @@ import gsap from "gsap";
 import ILike from "~/components/ILike.vue";
 
 const {focus, reset, spotify} = useCursorStore()
-const {index} = useNavStore()
+const {index, reset: resetStyles} = useNavStore()
+const route = useRoute()
 const img = useImage()
 const mainGradient = img('/gradient/main-gradient.png',
     {width: 2880, height: 1280})
@@ -23,10 +24,11 @@ onMounted(() => {
       scrub: true,
     };
 
+    console.log('WHEN DOES THIS RUN MF')
     gsap.fromTo(logo, {
       y: '40vh',
       scale: 2,
-    },{
+    }, {
       y: 0,
       scale: 1,
       scrollTrigger
@@ -34,18 +36,21 @@ onMounted(() => {
 
     gsap.fromTo(nav, {
       visibility: 'hidden',
-    },{
+    }, {
       visibility: 'visible',
       scrollTrigger: {
         ...scrollTrigger,
         start: 'top +=200',
       }
     });
-  }, '.layout'); // <- Scope!
+  }, 'body'); // <- Scope!
+
 });
 
 onUnmounted(() => {
-  if (ctx) ctx.revert(); // <- Easy Cleanup!
+  console.log('unmount')
+  resetStyles()
+  ctx.revert(); // <- Easy Cleanup!
 });
 </script>
 

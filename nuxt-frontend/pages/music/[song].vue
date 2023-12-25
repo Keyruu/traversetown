@@ -1,0 +1,26 @@
+<script setup lang="ts">
+const route = useRoute()
+const {reset} = useNavStore()
+
+const trimmedSong = computed(() => {
+  if (route.params.song) {
+    console.log(route.params.song)
+    return (route.params.song as string).replace(/ /g,'')
+  }
+  return 'fuckyou'
+})
+
+onMounted(() => {
+  reset()
+})
+</script>
+
+<template>
+  <main class="flex flex-col justify-center items-center">
+    <div class="h-64 w-full"></div>
+    <MyMusic :initial-song="trimmedSong"/>
+  </main>
+</template>
+
+<style scoped>
+</style>

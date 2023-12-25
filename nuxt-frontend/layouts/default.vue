@@ -5,19 +5,33 @@ const route = useRoute()
 const nav = useNavStore()
 const {navStyle, logoStyle} = storeToRefs(nav)
 
-watch(() => route.path, (value) => {
-  if (value === '/') {
+watch(() => route.path, (value, oldValue) => {
+  console.log(`new route ${value}`)
+  if (value === '/' && oldValue) {
+    console.log('WHEN DOES THIS RUN MF')
     nav.index()
+  } else {
+    nav.reset()
   }
+})
+
+watch(logoStyle, (value) => {
+  console.log(`logo style ${value}`)
 })
 </script>
 
 <template>
   <div>
+    {{ logoStyle }}
     <nav class="bg-[#121212] z-50 fixed w-screen" :style="navStyle">
       <div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-1 gap-1">
-        <NavLink @click="nav.reset" to="likes" class="hidden lg:flex" text="likes" direction="left"/>
-        <NavLink @click="nav.reset" to="music" class="hidden lg:flex" text="music" direction="left"/>
+        <div @click="nav.reset" class="flex justify-center">
+          <NavLink to="/likes" class="hidden lg:flex" text="likes" direction="left"/>
+        </div>
+        <div @click="nav.reset" class="flex justify-center">
+          <NavLink to="/music/newest-song" class="hidden lg:flex" text="music" direction="left"/>
+        </div>
+
         <div class="flex justify-center items-center">
           <NuxtLink to="/">
             <NuxtImg
@@ -34,8 +48,12 @@ watch(() => route.path, (value) => {
             />
           </NuxtLink>
         </div>
-        <NavLink @click="nav.reset" to="listens" class="hidden lg:flex" text="listens" direction="right"/>
-        <NavLink @click="nav.reset" to="about" class="hidden lg:flex" text="about" direction="right"/>
+        <div @click="nav.reset" class="flex justify-center">
+          <NavLink to="/listens" class="hidden lg:flex" text="listens" direction="right"/>
+        </div>
+        <div @click="nav.reset" class="flex justify-center">
+          <NavLink to="/about" class="hidden lg:flex" text="about" direction="right"/>
+        </div>
       </div>
     </nav>
     <slot/>
