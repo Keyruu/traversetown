@@ -4,9 +4,9 @@ const route = useRoute()
 const logoStyle = ref("")
 const navStyle = ref("")
 
-watch(() => route.path, value => {
+watch(() => route.path, (value, oldValue) => {
   console.log(value)
-  if (value === '/') {
+  if (value === '/' && oldValue) {
     navStyle.value = "visibility: hidden";
     logoStyle.value = "transform: translateY(40vh) scale(2);";
   } else {
