@@ -8,7 +8,9 @@ const props = defineProps({
   },
 })
 
-const { data, pending, error, refresh } = await useFetch<ReleasesType>("https://keyruu.de/api/v1/releases");
+const config = useRuntimeConfig()
+
+const { data, pending, error, refresh } = await useFetch<ReleasesType>(`${config.public.nocodbUrl}/api/v1/releases`);
 
 const initialSlide = computed(() => {
   if (props.initialSong === 'newest-song') {
@@ -24,9 +26,7 @@ const initialSlide = computed(() => {
   }
   return 0
 })
-
 const route = useRoute()
-const config = useRuntimeConfig()
 
 if (route.path.startsWith('/music')) {
   const currentSong = data.value?.list[initialSlide.value];
