@@ -57,7 +57,7 @@ useHead({
     </USlideover>
     <nav class="bg-[#121212] z-50 fixed w-screen">
       <div class="grid grid-cols-3 lg:grid-cols-5 grid-rows-1 gap-1">\
-        <div></div>
+        <div class="lg:hidden"></div>
         <NavLink to="/likes" class="hidden lg:flex" text="likes" direction="left"/>
         <NavLink to="/music/newest-song" class="hidden lg:flex" text="music" direction="left"/>
         <div class="flex justify-center items-center">
