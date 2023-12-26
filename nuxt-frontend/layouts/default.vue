@@ -30,7 +30,7 @@ useHead({
     {
       rel: 'icon',
       type: 'image/png',
-      href: '/favicon32x32.png'
+      href: '/favicon-32x32.png'
     }
   ],
   script: [
