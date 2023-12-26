@@ -22,6 +22,7 @@ export default defineNuxtConfig({
   },
   robots: {
     enabled: true,
+    indexable: true,
   },
   imports: {
     dirs: [
