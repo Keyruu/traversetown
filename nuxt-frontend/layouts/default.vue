@@ -45,7 +45,7 @@ useHead({
 
 <template>
   <div>
-    <USlideover v-model="slideoverOpen" side="left">
+    <USlideover v-model="slideoverOpen" side="right">
       <div class="flex-1 p-10 text-2xl flex justify-center flex-col">
         <UButton icon="i-mdi-close" variant="link" @click="slideoverOpen = false" class="mb-6 absolute top-2 right-2" />
         <NavLink @click="slideoverOpen = false" to="/" class="mb-6" text="home" direction="left"/>
@@ -57,13 +57,6 @@ useHead({
     </USlideover>
     <nav class="bg-[#121212] z-50 fixed w-screen">
       <div class="grid grid-cols-3 lg:grid-cols-5 grid-rows-1 gap-1">
-        <div class="flex justify-center items-center lg:hidden">
-          <UButton
-              variant="link"
-              class="h-8 w-8"
-              icon="i-mdi-menu"
-              @click="slideoverOpen = true" />
-        </div>
         <NavLink to="/likes" class="hidden lg:flex" text="likes" direction="left"/>
         <NavLink to="/music/newest-song" class="hidden lg:flex" text="music" direction="left"/>
         <div class="flex justify-center items-center">
@@ -82,6 +75,13 @@ useHead({
         </div>
         <NavLink to="/listens" class="hidden lg:flex" text="listens" direction="right"/>
         <NavLink to="/about" class="hidden lg:flex" text="about" direction="right"/>
+        <div class="flex justify-center items-center lg:hidden">
+          <UButton
+              variant="link"
+              class="h-8 w-8"
+              icon="i-mdi-menu"
+              @click="slideoverOpen = true" />
+        </div>
       </div>
     </nav>
     <slot/>
