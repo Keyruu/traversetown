@@ -8,7 +8,7 @@ export default defineSitemapEventHandler(async () => {
         return {
             loc: `/music/${release.songtitle.replace(/ /g, '')}`,
             // will end up in the releases sitemap
-            _sitemap: 'music',
+            // _sitemap: 'music',
             // changefreq: 'weekly',
             // priority: 0.8,
         }

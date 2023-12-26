@@ -14,17 +14,17 @@
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.1.0",
     "@iconify-json/mdi": "^1.1.63",
-    "@iconify-json/simple-icons": "^1.1.84",
+    "@iconify-json/simple-icons": "^1.1.85",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "latest",
-    "@nuxt/ui": "^2.9.0",
+    "@nuxt/ui": "^2.11.1",
     "@nuxtjs/web-vitals": "^0.2.6",
     "@vueuse/core": "^10.7.0",
     "@vueuse/nuxt": "^10.7.0",
-    "nuxt": "^3.7.4",
+    "nuxt": "^3.9.0",
     "nuxt-schema-org": "^3.3.0",
     "nuxt-simple-robots": "^3.1.10",
-    "nuxt-simple-sitemap": "^4.1.17"
+    "nuxt-simple-sitemap": "^4.2.0"
   },
   "dependencies": {
     "@iconify-json/pajamas": "^1.1.40",
