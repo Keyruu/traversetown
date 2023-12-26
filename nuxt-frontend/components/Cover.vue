@@ -15,7 +15,7 @@ const {focus, reset} = useCursorStore()
         @mouseenter="() => focus(3)"
         @mouseleave="reset"
         :placeholder="[500, 500]"
-        sizes="sm:30vw md:50vw lg:100vw"
+        sizes="xs:20vw sm:30vw md:50vw lg:100vw"
         format="webp"
     />
   </div>

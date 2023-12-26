@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
   site: {
     url: 'https://keyruu.de',
-    name: 'Keyruu'
+    name: 'Keyruu',
+    indexable: true,
   },
   sitemap: {
     sources: [
