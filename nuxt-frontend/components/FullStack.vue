@@ -80,7 +80,7 @@ const frontendIcons = [
     description:
         `I have used Nuxt for a few projects. The clear structure, the router and the auto-imports are a big plus.
         Also SSR is a nice feature.`,
-    link: 'https://nuxtjs.org/'
+    link: 'https://nuxt.com/'
   },
   {
     src: '/frontend/vercel.png',
