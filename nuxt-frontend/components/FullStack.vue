@@ -64,7 +64,7 @@ const frontendIcons = [
     alt: 'Vue',
     description:
         `I have used Vue for a lot of projects. I really like it, but I prefer Svelte over it.
-        This website is made with Vue because of the bigger ecosystem compared to Svelte`,
+        This website is made with Vue because of the bigger ecosystem compared to Svelte.`,
     link: 'https://vuejs.org/'
   },
   {
