@@ -19,7 +19,7 @@ useSeoMeta({
 
 <template>
   <main>
-    <div class="text-center flex flex-col justify-center text-xl h-[94vh]">
+    <div class="text-center flex flex-col justify-center text-xl h-[94vh] m-10">
       <h1 class="">Hi! I'm  Lucas aka <strong>Keyruu</strong>!</h1>
       <p>I'm a full stack developer / devops engineer and musician from Germany. I also love design and smart home.</p>
       <p>I love to expirement with different web development stacks and implement them in hobby projects.</p>
