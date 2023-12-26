@@ -36,7 +36,7 @@ const {focus, reset} = useCursorStore()
                   @mouseleave="reset"
                   height="60"
                   :placeholder="[60, 60]"
-                  class="object-contain h-[60px]"
+                  class="object-contain h-[60px] w-[60px] lg:w-full"
                   format="webp"
               />
             </a>
