@@ -8,7 +8,7 @@ let coords = reactive({
 })
 
 const {set: setCoords} = useSpring(coords, {
-  stiffness: 800,
+  stiffness: 900,
   damping: 80,
 })
 
