@@ -20,6 +20,9 @@ export default defineNuxtConfig({
       ],
     }
   },
+  robots: {
+    enabled: true,
+  },
   imports: {
     dirs: [
       'composables/generated/*.ts'
