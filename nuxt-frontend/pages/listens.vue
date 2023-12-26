@@ -1,8 +1,10 @@
 <script setup lang="ts">
-const seoTitle = 'Keyruu listens to this'
-const seoDesc = 'Keyruu likes a whole range of different music. For example metal, rap, pop, hyperpop, rock and more. ' +
+const config = useRuntimeConfig()
+
+const seoTitle = () => 'Keyruu listens to this'
+const seoDesc = () => 'Keyruu likes a whole range of different music. For example metal, rap, pop, hyperpop, rock and more. ' +
     'Find out what he listens to here. You can either check how often he listened to an artist or checkout his spotify activity.';
-const seoImage = '/ogImages/listens.png';
+const seoImage = () => '/ogImages/listens.png';
 
 useSeoMeta({
   title: seoTitle,
@@ -10,7 +12,7 @@ useSeoMeta({
   ogTitle: seoTitle,
   ogDescription: seoDesc,
   ogImage: seoImage,
-  ogUrl: 'https://keyruu.de/listens',
+  ogUrl: () => `${config.public.siteUrl}/listens`,
   twitterTitle: seoTitle,
   twitterDescription: seoDesc,
   twitterImage: seoImage,

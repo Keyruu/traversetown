@@ -2,12 +2,13 @@
 const {focus, reset} = useCursorStore()
 
 const slideoverOpen = ref(false)
+const config = useSiteConfig()
 
-const seoTitle = 'Keyruu'
-const seoDesc = 'Personal website of Keyruu aka Lucas. Keyruu is a DevOps Engineer and full-stack developer. ' +
+const seoTitle = () => 'Keyruu'
+const seoDesc = () => 'Personal website of Keyruu aka Lucas. Keyruu is a DevOps Engineer and full-stack developer. ' +
     'He also does music (hyperpop, rap, pop) and design. ' +
     'He uses Svelte, Vue, Java, Quarkus, GraphQL, Kubernetes, Helm, Hetzner, Go and Rust.'
-const seoImage = '/ogImages/index.png';
+const seoImage = () => '/ogImages/index.png';
 
 useSeoMeta({
   title: seoTitle,
@@ -15,7 +16,7 @@ useSeoMeta({
   ogTitle: seoTitle,
   ogDescription: seoDesc,
   ogImage: seoImage,
-  ogUrl: 'https://keyruu.de',
+  ogUrl: () => config.url,
   twitterTitle: seoTitle,
   twitterDescription: seoDesc,
   twitterImage: seoImage,

@@ -1,8 +1,10 @@
 <script setup lang="ts">
-const seoTitle = 'Keyruu is about this'
-const seoDesc = 'Keyruu is a full stack developer / devops engineer and musician from Germany. ' +
+const config = useRuntimeConfig()
+
+const seoTitle = () => 'Keyruu is about this'
+const seoDesc = () => 'Keyruu is a full stack developer / devops engineer and musician from Germany. ' +
     'He also loves design and smart home. Find out more about him here and how to reach him.';
-const seoImage = '/ogImages/index.png';
+const seoImage = () => '/ogImages/index.png';
 
 useSeoMeta({
   title: seoTitle,
@@ -10,7 +12,7 @@ useSeoMeta({
   ogTitle: seoTitle,
   ogDescription: seoDesc,
   ogImage: seoImage,
-  ogUrl: 'https://keyruu.de/about',
+  ogUrl: () => `${config.public.siteUrl}/about`,
   twitterTitle: seoTitle,
   twitterDescription: seoDesc,
   twitterImage: seoImage,

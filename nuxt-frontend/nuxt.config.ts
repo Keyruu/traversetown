@@ -2,6 +2,23 @@
 export default defineNuxtConfig({
   site: {
     url: 'https://keyruu.de',
+    name: 'Keyruu'
+  },
+  sitemap: {
+    sources: [
+      '/api/__sitemap__/urls'
+    ],
+  },
+  schemaOrg: {
+    identity: {
+      name: 'Keyruu - Lucas',
+      image: 'https://keyruu.de/keyruu_logo.png',
+      type: 'Person',
+      sameAs: [
+          'https://www.linkedin.com/in/lucasrott/',
+          'https://github/keyruu',
+      ],
+    }
   },
   imports: {
     dirs: [
@@ -30,6 +47,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     '@pinia/nuxt',
+    'nuxt-schema-org',
   ],
   ui: {
     icons: ["mdi", "simple-icons"]
