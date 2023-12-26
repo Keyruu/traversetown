@@ -47,7 +47,7 @@ useHead({
   <div>
     <USlideover v-model="slideoverOpen" side="left">
       <div class="flex-1 p-10 text-2xl flex justify-center flex-col">
-        <UButton icon="i-mdi-close" @click="slideoverOpen = false" class="mb-6 absolute top-2 right-2" />
+        <UButton icon="i-mdi-close" variant="link" @click="slideoverOpen = false" class="mb-6 absolute top-2 right-2" />
         <NavLink @click="slideoverOpen = false" to="/" class="mb-6" text="home" direction="left"/>
         <NavLink @click="slideoverOpen = false" to="/likes" class="mb-6" text="likes" direction="left"/>
         <NavLink @click="slideoverOpen = false" to="/music/newest-song" class="mb-6" text="music" direction="left"/>
@@ -59,6 +59,7 @@ useHead({
       <div class="grid grid-cols-3 lg:grid-cols-5 grid-rows-1 gap-1">
         <div class="flex justify-center items-center lg:hidden">
           <UButton
+              variant="link"
               class="h-8 w-8"
               icon="i-mdi-menu"
               @click="slideoverOpen = true" />
