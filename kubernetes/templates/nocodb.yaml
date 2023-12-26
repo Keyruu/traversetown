@@ -97,10 +97,12 @@ data:
               "nocodb:80": 1
           type: roundrobin
       - uri: /api/v1/releases
-        host: {{ .Values.ingress.host }}
+        host: {{ .Values.nocodb.host }}
         methods:
           - GET
         plugins:
+          cors:
+            allow_origins: "https://keyruu.de"
           proxy-rewrite:
             uri: "/api/v1/db/data/v1/releases/releases?sort=-release_date"
             headers:

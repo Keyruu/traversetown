@@ -20,11 +20,13 @@ apifix:
     tag: "latest"
 
 backend:
+  host: backend.keyruu.de
   image:
     repository: "ghcr.io/keyruu/traversetown/roxas"
     tag: "latest"
 
 frontend:
+  enabled: false
   image:
     repository: "ghcr.io/keyruu/traversetown/frontend"
     tag: "latest"

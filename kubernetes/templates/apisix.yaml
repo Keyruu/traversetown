@@ -90,13 +90,13 @@ spec:
   {{- end }}
   tls:
     - hosts:
-        - "{{ .Values.ingress.host }}"
+        - "{{ .Values.backend.host }}"
       secretName: apisix-tls
     - hosts:
         - "{{ .Values.nocodb.host }}"
       secretName: nocodb-tls
   rules:
-    - host: "{{ .Values.ingress.host }}"
+    - host: "{{ .Values.backend.host }}"
       http:
         paths:
           - pathType: Prefix

@@ -43,6 +43,10 @@ spec:
                 secretKeyRef:
                   name: postgres
                   key: password
+            - name: QUARKUS_HTTP_CORS
+              value: "true"
+            - name: QUARKUS_HTTP_CORS_ORIGIN
+              value: "https://keyruu.de"
           ports:
             - containerPort: 8080
               name: app
@@ -69,6 +73,7 @@ data:
   config: |
     routes:
       - uri: /graphql
+        host: {{ .Values.backend.host }}
         enable_websocket: true
         upstream:
           nodes:
