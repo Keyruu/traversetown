@@ -7,6 +7,10 @@ register()
 gsap.registerPlugin(ScrollTrigger);
 
 const { setCoords } = useCursorStore()
+
+definePageMeta({
+  colorMode: 'dark',
+})
 </script>
 <template>
   <div ref="el" class="cursor-none overflow-x-hidden" @pointermove="setCoords">
