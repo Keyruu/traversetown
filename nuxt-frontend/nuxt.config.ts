@@ -56,6 +56,11 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'dark',
   },
+  image: {
+    domains: [
+        'nocodb.keyruu.de',
+    ]
+  },
   apollo: {
     clients: {
       default: {

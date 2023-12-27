@@ -43,6 +43,10 @@ useHead({
     },
   ]
 })
+
+definePageMeta({
+  colorMode: 'dark',
+})
 </script>
 
 <template>
@@ -69,6 +73,7 @@ useHead({
                 width="500"
                 height="300"
                 :placeholder="[500, 300]"
+                sizes="xs:20vw sm:30vw md:50vw lg:100vw"
                 src="/keyruu_logo.png"
                 alt="Keyruu"
                 @mouseenter="() => focus(2)"
