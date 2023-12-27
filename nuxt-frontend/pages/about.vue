@@ -27,7 +27,7 @@ useSeoMeta({
       <p>I love to expirement with different web development stacks and implement them in hobby projects.</p>
       <p>This website is a demo of the stack and for implementing fun little features I think of.</p>
       <p>It's also a place for me to share my music and other stuff I like.</p>
-      <p>Feel free to contact me via <a class="text-blue-700 hover:underline" href="mailto:me@keyruu.de" target="_blank">email</a>.</p>
+      <p>Feel free to contact me via <a class="text-blue-700 hover:underline" href="mailto:keyruu@web.de" target="_blank">email</a>.</p>
       <p><br/>This site does not need an Imprint, because it is a purely personal site without any commercial purpose.</p>
     </div>
   </main>
