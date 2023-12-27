@@ -20,7 +20,8 @@ useSeoMeta({
   twitterTitle: seoTitle,
   twitterDescription: seoDesc,
   twitterImage: seoImage,
-  twitterCard: 'summary'
+  twitterCard: 'summary',
+  themeColor: '#121212'
 });
 
 useHead({

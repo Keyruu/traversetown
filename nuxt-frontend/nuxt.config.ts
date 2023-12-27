@@ -53,6 +53,9 @@ export default defineNuxtConfig({
   ui: {
     icons: ["mdi", "simple-icons"]
   },
+  colorMode: {
+    preference: 'dark',
+  },
   apollo: {
     clients: {
       default: {
