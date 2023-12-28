@@ -21,7 +21,8 @@ useSeoMeta({
   twitterDescription: seoDesc,
   twitterImage: seoImage,
   twitterCard: 'summary',
-  themeColor: '#121212'
+  themeColor: '#121212',
+  ogSiteName: () => 'Keyruu'
 });
 
 useHead({
@@ -42,10 +43,6 @@ useHead({
       'data-domain': 'keyruu.de'
     },
   ]
-})
-
-definePageMeta({
-  colorMode: 'dark',
 })
 </script>
 
