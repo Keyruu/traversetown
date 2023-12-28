@@ -1,3 +1,0 @@
-query GetPlaycount($artist: String) {
-  playcount(artist: $artist)
-}
