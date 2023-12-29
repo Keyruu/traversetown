@@ -97,7 +97,7 @@ useHead({
         >
           <div>
             <p class="text-gray-500 text-sm text-center sm:text-left">
-              © 2023 Keyruu
+              © 2023 Keyruu / <NuxtLink to="/imprint" class="hover:underline">Imprint</NuxtLink>
             </p>
           </div>
           <span

@@ -9,6 +9,12 @@ export default defineNuxtConfig({
     sources: [
       '/api/__sitemap__/urls'
     ],
+    exclude: [
+        '/imprint'
+    ]
+  },
+  routeRules: {
+      '/imprint': { robots: 'noindex' }
   },
   schemaOrg: {
     identity: {
