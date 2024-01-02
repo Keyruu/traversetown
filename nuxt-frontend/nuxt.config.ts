@@ -10,11 +10,11 @@ export default defineNuxtConfig({
       '/api/__sitemap__/urls'
     ],
     exclude: [
-        '/imprint'
+      '/imprint'
     ]
   },
   routeRules: {
-      '/imprint': { robots: 'noindex' }
+    '/imprint': { robots: 'noindex' }
   },
   schemaOrg: {
     identity: {
@@ -22,8 +22,8 @@ export default defineNuxtConfig({
       image: 'https://keyruu.de/keyruu_logo.png',
       type: 'Person',
       sameAs: [
-          'https://www.linkedin.com/in/lucasrott/',
-          'https://github/keyruu',
+        'https://www.linkedin.com/in/lucasrott/',
+        'https://github/keyruu',
       ],
     }
   },
@@ -64,7 +64,7 @@ export default defineNuxtConfig({
   },
   image: {
     domains: [
-        'nocodb.keyruu.de',
+      'nocodb.keyruu.de',
     ]
   },
   apollo: {

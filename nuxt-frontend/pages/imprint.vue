@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const { setNavShow } = useNavStore()
+
+setNavShow(true)
 </script>
 
 <template>
@@ -11,9 +14,9 @@
   </p>
 
   <p>
-    Lucas Rott<br/>
-    c/o COCENTER<br/>
-    Koppoldstr. 1<br/>
+    Lucas Rott<br />
+    c/o COCENTER<br />
+    Koppoldstr. 1<br />
     86551 Aichach
   </p>
 
@@ -26,8 +29,10 @@
 
   <p>
     Information gemäß § 36 VSBG
-    Gemäß § 36 VSBG (Verbraucherstreitbeilegungsgesetz – Gesetz über die alternative Streitbeilegung in Verbrauchersachen) erklärt der Betreiber dieser Website:
+    Gemäß § 36 VSBG (Verbraucherstreitbeilegungsgesetz – Gesetz über die alternative Streitbeilegung in Verbrauchersachen)
+    erklärt der Betreiber dieser Website:
 
-    Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+    Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+    teilzunehmen.
   </p>
 </template>
