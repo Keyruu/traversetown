@@ -53,11 +53,8 @@ onUnmounted(() => {
 
 <template>
   <main>
-    <div :class="`w-full bg-no-repeat bg-cover
-        flex justify-center items-center flex-col`" :style="`
-        height: 100vh;
-        height: 100svh;
-        background-image: url('${mainGradient}');`">
+    <div :class="`w-full h-screen bg-no-repeat bg-cover
+        flex justify-center items-center flex-col`" :style="`background-image: url('${mainGradient}');`">
       <UIcon name="i-mdi-arrow-down" class="h-10 w-10 sticky text-white mt-auto mb-8" />
     </div>
     <ILike />
