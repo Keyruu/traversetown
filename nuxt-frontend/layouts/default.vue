@@ -29,7 +29,8 @@ useSeoMeta({
 
 useHead({
   htmlAttrs: {
-    lang: 'en'
+    lang: 'en',
+    class: 'dark'
   },
   link: [
     {
