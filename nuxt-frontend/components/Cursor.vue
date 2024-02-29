@@ -1,30 +1,13 @@
 <script setup lang="ts">
 let mouseStore = useCursorStore()
 let { x, y, scale, icon, color } = storeToRefs(mouseStore)
-
-let coords = reactive({
-  x: 0,
-  y: 0
-})
-
-const { set: setCoords } = useSpring(coords, {
-  stiffness: 1000,
-  damping: 80,
-})
-
-watch([x, y], ([newX, newY]) => {
-  setCoords({
-    x: newX - 10,
-    y: newY - 10
-  })
-})
 </script>
 
 <template>
   <div class="cursor">
     <div class="cursor--small flex justify-center items-center" :style="`
         transform: scale(${scale}); background: ${color};
-                         left: ${coords.x}px; top: ${coords.y}px;`">
+                         left: ${x - 10}px; top: ${y - 10}px;`">
       <UIcon v-if="icon" class="mix-blend-difference" :name="icon" />
     </div>
   </div>

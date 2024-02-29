@@ -88,7 +88,7 @@ useHead({
         <div class="mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row items-center">
           <div>
             <p class="text-gray-500 text-sm text-center sm:text-left">
-              © 2023 Keyruu / <NuxtLink to="/imprint" class="hover:underline">Imprint</NuxtLink>
+              © 2024 Keyruu / <NuxtLink to="/imprint" class="hover:underline">Imprint</NuxtLink>
             </p>
           </div>
           <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
